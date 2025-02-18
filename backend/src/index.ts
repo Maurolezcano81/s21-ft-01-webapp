@@ -1,17 +1,23 @@
-import express, { Request, Response } from "express";
+import { envs } from "./config/envs";
+import { AppRoutes } from "./presentation/routes";
+import { Server } from "./presentation/server";
 
-const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware para parsear JSON
-app.use(express.json());
+(async () => {
+  main();
+})()
 
-// Ruta de prueba
-app.get("/", (req: Request, res: Response) => {
-  res.send("¡Servidor con Express y TypeScript funcionando! 🚀");
-});
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+async function main() {
+
+  //DB connection here
+
+  const server = new Server({
+    port: envs.PORT,
+    routes: AppRoutes.routes,
+  });
+
+  server.start();
+
+
+}
