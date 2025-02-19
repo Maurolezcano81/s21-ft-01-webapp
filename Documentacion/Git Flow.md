@@ -1,3 +1,4 @@
+![[Pasted image 20250219190245.png]]
 
 ## ¿Qué es Git Flow?
 

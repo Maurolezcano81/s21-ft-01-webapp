@@ -1,5 +1,4 @@
 
-
 1. **Historias de usuario** 📜 ( Bonus Mapa de Empatia )
 
 2. **Requerimientos técnicos** ⚙️

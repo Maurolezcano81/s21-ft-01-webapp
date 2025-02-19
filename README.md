@@ -1,4 +1,4 @@
-# 🏦 Banco Digital - MVP
+# 🏦 CapyBack - MVP
 
 
 ## 🌟 Descripción del Proyecto
@@ -120,17 +120,15 @@ Pago de servicios básicos (Versión 2 - Roadmap).
 [Prototipo en Figma](https://www.figma.com/design/VpWXanmp80tjBfjuKaGUHs/Bank-APP-No-country?node-id=1-2&t=XZ6w55bgA2ckAmAl-0)
 
 
-📖 Recursos Adicionales
-
   
 
 ## 👥 Equipo de Desarrollo
 
-- [@Diego Yako UI/UX](https://github.com/diegoyako)
-- [@Eduardo Salas Gonzalez](https://github.com/EduardoSalasG)
-- [@Florencia Pons Toloza](https://github.com/FlorPons)
-- [@FrancoEspinozaV · he/him](https://github.com/FrancoEspinozaV)
-- [@Irvin Martinez](https://github.com/Irvin-Mx)
-- [@Kevin Salinas](https://github.com/ksalinas652)
-- [@Mauro David Lezcano](https://github.com/Maurolezcano81)
-- [@OrlandoCV](https://github.com/orlando0107)
+- [@Diego Yako - UI/UX](https://github.com/diegoyako)
+- [@Eduardo Salas Gonzalez - BACKEND](https://github.com/EduardoSalasG)
+- [@Florencia Pons Toloza - FRONTEND](https://github.com/FlorPons)
+- [@FrancoEspinozaV · FRONTEND](https://github.com/FrancoEspinozaV)
+- [@Irvin Martinez - BACKEND](https://github.com/Irvin-Mx)
+- [@Kevin Salinas - BACKEND](https://github.com/ksalinas652)
+- [@Mauro David Lezcano - FRONTEND](https://github.com/Maurolezcano81)
+- [@OrlandoCV - PM](https://github.com/orlando0107)
