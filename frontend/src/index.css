@@ -1,1 +1,5 @@
 @import 'tailwindcss';
+@import 'primereact/resources/themes/lara-light-blue/theme.css'
+  layer(primereact);
+
+@custom-variant dark (&:where(.dark, .dark *));
