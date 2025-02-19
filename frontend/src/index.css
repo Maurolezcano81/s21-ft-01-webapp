@@ -3,3 +3,12 @@
   layer(primereact);
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme{
+  --color-primary: #0095BE;
+  --color-secondary: #FF6B6B;
+  --color-black: #000;
+  --color-white: #fff;
+  --font-monserrat: "Montserrat", "Poppins"
+}
