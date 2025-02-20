@@ -4,7 +4,6 @@ import { FormDataRegister } from "../../schemas/register.schema";
 import { useState } from "react";
 
 const NacionalitySection: React.FC<PropsFormSubcomponent<FormDataRegister>> = ({
-    register,
     errors,
     setValue,
     trigger

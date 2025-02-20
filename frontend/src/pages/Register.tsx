@@ -12,14 +12,10 @@ import FooterForm from "../components/register/FooterForm";
 
 const Register: React.FC = () => {
 
-    const { register, handleSubmit, control, trigger, setValue, watch, formState: { errors } } = useForm<FormDataRegister>({
+    const { register, handleSubmit, control, trigger, setValue, formState: { errors } } = useForm<FormDataRegister>({
         resolver: zodResolver(registerSchema),
         mode: "all"
     })
-
-    useEffect(() => {
-        console.log(watch()); // Esto te permitirá ver los datos del formulario en tiempo real
-    }, [watch()]);
 
     const onSubmit = (data: FormDataRegister) => {
         console.log(data)
@@ -27,7 +23,7 @@ const Register: React.FC = () => {
 
 
     return (
-        <div className="flex md:bg-primary flex-col-reverse md:flex-row w-screen min-h-screen items-center justify-center">
+        <div className="flex md:bg-primary flex-col-reverse md:flex-row min-h-screen items-center justify-center">
             <form
                 className=" py-8 px-8 md:grow-1 md:py-8 md:px-8 lg:px-32 min-h-screen bg-white md:min-h-screen text-neutral-600 flex flex-col gap-4"
                 onSubmit={(handleSubmit(onSubmit))}
