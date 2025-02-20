@@ -1,6 +1,11 @@
 # 🏦 CapyBack - MVP
 
 
+<p aling="center">
+<img src="logo.png" height="400" alt="Logo"/>
+</p>
+
+
 ## 🌟 Descripción del Proyecto
 
 El Banco Digital es una aplicación web diseñada para ofrecer servicios bancarios de manera segura, rápida y accesible. Su objetivo es mejorar la experiencia bancaria digital, brindando a los usuarios herramientas eficaces para gestionar sus finanzas desde cualquier lugar y en cualquier momento.
@@ -42,11 +47,9 @@ El Banco Digital es una aplicación web diseñada para ofrecer servicios bancari
 
 ### 🔐 Autenticación y Seguridad
 
-Registro y autenticación mediante Email y Password.
+Registro (Verifucacion de identidad) y autenticación mediante Email y Password.
 
 Verificación de identidad (KYC) antes de realizar operaciones sensibles.
-
-Identificación con DNI o documento real para acceder al Dashboard.
 
 
 ### 💳 Cuenta Digital
