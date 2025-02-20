@@ -3,7 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 
 
 const isAuthenticated = (data: { isAuthenticated?: boolean } | undefined, isLoading: boolean) => {
-
+  // TODO: Check if user is authenticated
   if (isLoading) return <p>Cargando...</p>;
   if (!data?.isAuthenticated) return false;
   return true
