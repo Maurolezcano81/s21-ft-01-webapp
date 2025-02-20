@@ -7,8 +7,48 @@
 
 @theme{
   --color-primary: #0095BE;
+  --color-primary-hover: #00627C;
   --color-secondary: #FF6B6B;
   --color-black: #000;
   --color-white: #fff;
+  --color-gray: #C4C4C4;
   --font-monserrat: "Montserrat", "Poppins"
+}
+
+.custom-calendar.p-calendar-w-btn > button	{
+  border: none;
+  background:none;
+  color: var(--color-black);
+  position: absolute;
+  right: 0;
+}
+
+.custom-calendar.p-calendar-w-btn > button .p-icon {
+  font-size: 24px !important; 
+  width: 24px !important; 
+  height: 24px !important;
+}
+
+.p-password > div > span > svg {
+  margin-top: 0;
+}
+
+input::placeholder, select::placeholder{
+  font-size: 14px;
+  color: #c4c4c4;
+}
+
+input{
+  padding: 14px 28px;
+  border-radius: 15px;
+}
+
+.blue-button {
+  border-radius: 15px;
+  background-color: #0095BE;
+  transition: background-color 0.3s;
+}
+
+.blue-button:hover {
+  background-color: #00627C;
 }

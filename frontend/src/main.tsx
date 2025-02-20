@@ -8,7 +8,6 @@ import Tailwind from 'primereact/passthrough/tailwind';
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <PrimeReactProvider value={{
-      unstyled: true,
       pt: Tailwind
     }}>
       <App />
