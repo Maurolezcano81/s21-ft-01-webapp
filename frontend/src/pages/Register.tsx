@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,11 +12,14 @@ import FooterForm from "../components/register/FooterForm";
 
 const Register: React.FC = () => {
 
-    const { register, handleSubmit, control, formState: { errors } } = useForm<FormDataRegister>({
+    const { register, handleSubmit, control, trigger, setValue, watch, formState: { errors } } = useForm<FormDataRegister>({
         resolver: zodResolver(registerSchema),
         mode: "all"
     })
 
+    useEffect(() => {
+        console.log(watch()); // Esto te permitirá ver los datos del formulario en tiempo real
+    }, [watch()]);
 
     const onSubmit = (data: FormDataRegister) => {
         console.log(data)
@@ -38,7 +41,7 @@ const Register: React.FC = () => {
 
                 <PersonalSection register={register} errors={errors} />
 
-                <NacionalitySection register={register} errors={errors} />
+                <NacionalitySection register={register} errors={errors} trigger={trigger} setValue={setValue} />
 
                 <PrivateDataSection control={control} register={register} errors={errors} />
 

@@ -17,9 +17,9 @@ export const registerSchema = z.object({
         .string()
         .refine((val) => phoneRegex.test(val), { message: "Número de teléfono invalido." }),
     country_fk: z
-        .string({ message: "Ingresa un país.", invalid_type_error: "El formato introducido es incorrecto." }),
-    city_fk: z
-        .string({ message: "Ingresa una ciudad.", invalid_type_error: "El formato introducido es incorrecto." }),
+        .number({ message: "Ingresa un país.", invalid_type_error: "El formato introducido es incorrecto." }),
+        city_fk: z
+        .number({ message: "Ingresa una ciudad.", invalid_type_error: "El formato introducido es incorrecto." }),
     // dni: z
     //     .instanceof(File)  // Asegúrate de que sea una instancia de File
     //     .refine(
