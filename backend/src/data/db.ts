@@ -1,6 +1,7 @@
 //sequelize initialize and associations 
 import { Sequelize } from 'sequelize';
 import { envs } from '../config/envs';
+import { initModels } from './models/generic.model';
 
 // Configuración de Sequelize con variables de entorno desde envs.ts
 const sequelize = new Sequelize(
@@ -20,6 +21,7 @@ const sequelize = new Sequelize(
   }
 );
 
+initModels(sequelize);
 
 
 export default sequelize;
