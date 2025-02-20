@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +9,7 @@ import PersonalSection from "../components/register/PersonalSection";
 import NacionalitySection from "../components/register/NacionalitySection";
 import PrivateDataSection from "../components/register/PrivateDataSection";
 import FooterForm from "../components/register/FooterForm";
-import { useAuth } from "../hooks/useAuth";
+// import { useAuth } from "../hooks/useAuth";
 
 const Register: React.FC = () => {
 
@@ -23,6 +23,7 @@ const Register: React.FC = () => {
 
     const onSubmit = (data: FormDataRegister) => {
         // login(data)
+        console.log(data)
     }
 
 
@@ -45,7 +46,7 @@ const Register: React.FC = () => {
 
                 <PrivateDataSection control={control} register={register} errors={errors} />
 
-                <FooterForm 
+                <FooterForm
                 // isPending={isPending} errors={error}
                 />
             </form>
