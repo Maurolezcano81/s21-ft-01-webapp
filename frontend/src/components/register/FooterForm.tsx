@@ -1,8 +1,15 @@
 import { Link } from "react-router";
 import BlueButton from "../buttons/BlueButton";
 
+interface FooterProps {
+    isPending: boolean,
+    errors: Error | null
+}
 
-const FooterForm: React.FC = () => {
+const FooterForm: React.FC<FooterProps> = ({
+    isPending,
+    errors
+}) => {
 
     return (
         <>
@@ -11,6 +18,8 @@ const FooterForm: React.FC = () => {
                     className="w-full"
                     label="Registrarse"
                     type="submit"
+                    // disabled={Object.keys(errors!).length > 0}
+                    // loading={isPending}
                 />
 
                 <small

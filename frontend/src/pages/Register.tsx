@@ -9,6 +9,7 @@ import PersonalSection from "../components/register/PersonalSection";
 import NacionalitySection from "../components/register/NacionalitySection";
 import PrivateDataSection from "../components/register/PrivateDataSection";
 import FooterForm from "../components/register/FooterForm";
+import { useAuth } from "../hooks/useAuth";
 
 const Register: React.FC = () => {
 
@@ -17,8 +18,11 @@ const Register: React.FC = () => {
         mode: "all"
     })
 
+    // const { mutate: login, isSuccess, isPending, isError, error } = useAuth()
+
+
     const onSubmit = (data: FormDataRegister) => {
-        console.log(data)
+        // login(data)
     }
 
 
@@ -41,7 +45,9 @@ const Register: React.FC = () => {
 
                 <PrivateDataSection control={control} register={register} errors={errors} />
 
-                <FooterForm />
+                <FooterForm 
+                // isPending={isPending} errors={error}
+                />
             </form>
 
             <RightSide />

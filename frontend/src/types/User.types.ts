@@ -1,4 +1,4 @@
-interface User {
+export interface User {
     id: number
     name: string,
     email: string,
@@ -8,7 +8,7 @@ interface User {
     city_fk: number,
     dni_photo?: File | null,
     password: string,
-    repeatPwd: string
+    repeatPwd?: string
 }
 
 export type RegisterUser = Omit<User, 'id'>
