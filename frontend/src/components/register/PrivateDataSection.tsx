@@ -3,15 +3,14 @@ import { Password } from "primereact/password";
 import Upload from '../../svgs/upload.svg';
 import { PropsFormSubcomponent } from "../../types/FormProps.types";
 import { FormDataRegister } from "../../schemas/register.schema";
-import { Controller, useForm } from "react-hook-form";
+import { Controller} from "react-hook-form";
 
 
 const PrivateDataSection: React.FC<PropsFormSubcomponent<FormDataRegister>> = ({
     register,
-    errors
+    errors,
+    control
 }) => {
-
-    const { control } = useForm<FormDataRegister>()
 
     return (
         <>
@@ -65,7 +64,6 @@ const PrivateDataSection: React.FC<PropsFormSubcomponent<FormDataRegister>> = ({
                                     root: { style: { width: "100%" } },
                                 }}
                                 invalid={!!errors.password}
-
                             />
                         )}
                     />

@@ -6,7 +6,7 @@ interface User {
     phone: string,
     country_fk: number,
     city_fk: number,
-    dni_photo: File | null,
+    dni_photo?: File | null,
     password: string,
     repeatPwd: string
 }

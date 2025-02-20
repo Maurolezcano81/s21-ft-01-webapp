@@ -12,7 +12,7 @@ import FooterForm from "../components/register/FooterForm";
 
 const Register: React.FC = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormDataRegister>({
+    const { register, handleSubmit, control, formState: { errors } } = useForm<FormDataRegister>({
         resolver: zodResolver(registerSchema),
         mode: "all"
     })
@@ -40,7 +40,7 @@ const Register: React.FC = () => {
 
                 <NacionalitySection register={register} errors={errors} />
 
-                <PrivateDataSection register={register} errors={errors} />
+                <PrivateDataSection control={control} register={register} errors={errors} />
 
                 <FooterForm />
             </form>

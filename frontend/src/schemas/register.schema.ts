@@ -20,16 +20,28 @@ export const registerSchema = z.object({
         .string({ message: "Ingresa un país.", invalid_type_error: "El formato introducido es incorrecto." }),
     city_fk: z
         .string({ message: "Ingresa una ciudad.", invalid_type_error: "El formato introducido es incorrecto." }),
-    dni: z
-        .instanceof(File, { message: "El Dni o pasaporte es obligatorio" })
-        .refine((file) => file && file.size > 0, { message: "Por favor, carga un archivo de DNI." })
-        .refine((file) => file && file.type === 'application/pdf', { message: "El archivo debe ser un PDF." }),
+    // dni: z
+    //     .instanceof(File)  // Asegúrate de que sea una instancia de File
+    //     .refine(
+    //         (file) => file?.size > 0,  // Verifica que el archivo tenga un tamaño mayor a 0
+    //         { message: "Por favor, carga un archivo de DNI." }
+    //     )
+    //     .refine(
+    //         (file) => file?.type === 'application/pdf',  // Verifica que el archivo sea un PDF
+    //         { message: "El archivo debe ser un PDF." }
+    //     ),
     password: z
         .string({ message: "La contraseña es obligatoria", invalid_type_error: "El formato introducido es incorrecto." })
         .min(6, { message: "La contraseña debe tener al menos 6 caracteres." }),
     repeatpwd: z
         .string({ message: "Las contraseñas deben coincidir", invalid_type_error: "El formato introducido es incorrecto." })
         .min(6, { message: "La contraseña debe tener al menos 6 caracteres." })
+
+}).refine((data) => data.password === data.repeatpwd, {
+    message: "Las contraseñas no coinciden",
+    path: ["repeatpwd"], // Puedes especificar el campo donde debe aparecer el error
 });
+
+
 
 export type FormDataRegister = z.infer<typeof registerSchema>;
