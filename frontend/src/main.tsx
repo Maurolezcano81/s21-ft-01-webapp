@@ -9,7 +9,6 @@ import { queryClient } from './context/queryClient.ts';
 createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <PrimeReactProvider value={{
-      unstyled: true,
       pt: Tailwind
     }}>
       <App />
