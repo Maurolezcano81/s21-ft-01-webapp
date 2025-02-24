@@ -1,24 +1,24 @@
 import { Request, Response } from "express";
-import { TransactionTypeService } from "../services/transactionType.service";
+import { OperationService } from "../services/operation.service";
 
 
-export class TransactionTypeController {
+export class OperationController {
 
     constructor(
-        public readonly transactionTypeService: TransactionTypeService,
+        public readonly operationService: OperationService,
     ) { }
 
     create = (req: Request, res: Response) => {
         const { name } = req.body
 
-        this.transactionTypeService.create(name)
+        this.operationService.create(name)
             .then((data) => res.status(201).json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
 
     getAll = (req: Request, res: Response) => {
 
-        this.transactionTypeService.getAll()
+        this.operationService.getAll()
             .then((data) => res.json(data))
             .catch(error => { console.log(error); res.status(400).json({ error: error.message }) })
     }
@@ -28,7 +28,7 @@ export class TransactionTypeController {
 
         const numberId = Number(id)
 
-        this.transactionTypeService.getByID(numberId)
+        this.operationService.getByID(numberId)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
@@ -36,7 +36,7 @@ export class TransactionTypeController {
     getByName = (req: Request, res: Response) => {
         const { name } = req.params
 
-        this.transactionTypeService.getByName(name)
+        this.operationService.getByName(name)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
@@ -48,7 +48,7 @@ export class TransactionTypeController {
 
         const numberId = Number(id)
 
-        this.transactionTypeService.update(name, numberId)
+        this.operationService.update(name, numberId)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
@@ -58,7 +58,7 @@ export class TransactionTypeController {
 
         const numberId = Number(id)
 
-        this.transactionTypeService.deleteByID(numberId)
+        this.operationService.deleteByID(numberId)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }

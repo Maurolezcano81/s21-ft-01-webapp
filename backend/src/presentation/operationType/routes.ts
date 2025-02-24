@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { TransactionTypeController } from "./controller";
-import { TransactionTypeService } from "../services/transactionType.service";
+import { OperationTypeController } from "./controller";
+import { OperationTypeService } from "../services/operationType.service";
 
-export class TransactionTypeRoutes {
+export class OperationTypeRoutes {
 
     static get routes(): Router {
 
         const router = Router();
 
-        const service = new TransactionTypeService();
+        const service = new OperationTypeService();
 
-        const controller = new TransactionTypeController(service);
+        const controller = new OperationTypeController(service);
 
         router.get('/', controller.getAll);
         router.get('/:id', controller.getByID);
