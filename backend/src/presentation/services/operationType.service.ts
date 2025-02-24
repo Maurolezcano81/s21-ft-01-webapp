@@ -35,7 +35,7 @@ export class OperationTypeService {
         try {
             const operationType = await OperationType.findByPk(id);
 
-            if (!operationType) throw new Error('Transaction type not found')
+            if (!operationType) throw new Error('Operation type not found')
 
             return operationType;
 
@@ -48,7 +48,7 @@ export class OperationTypeService {
 
         const operationType = await OperationType.findOne({ where: { name } })
 
-        if (operationType) throw new Error('Transaction type already exists')
+        if (operationType) throw new Error('Operation type already exists')
         return
     }
 
@@ -57,7 +57,7 @@ export class OperationTypeService {
         try {
             const operationType = await OperationType.findByPk(id);
 
-            if (!operationType) throw new Error('Transaction type not found')
+            if (!operationType) throw new Error('Operation type not found')
 
             operationType.name = name;
 
@@ -74,7 +74,7 @@ export class OperationTypeService {
         try {
             const operationType = await OperationType.findByPk(id);
 
-            if (!operationType) throw new Error('Transaction type not found')
+            if (!operationType) throw new Error('Operation type not found')
 
             await operationType.destroy();
 

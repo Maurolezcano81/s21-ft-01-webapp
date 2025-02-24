@@ -33,15 +33,6 @@ export class OperationTypeController {
             .catch(error => res.status(400).json({ error: error.message }))
     }
 
-    getByName = (req: Request, res: Response) => {
-        const { name } = req.params
-
-        this.operationTypeService.getByName(name)
-            .then((data) => res.json(data))
-            .catch(error => res.status(400).json({ error: error.message }))
-    }
-
-
     update = (req: Request, res: Response) => {
         const { name } = req.body
         const { id } = req.params
