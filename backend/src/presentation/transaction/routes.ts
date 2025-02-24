@@ -15,9 +15,6 @@ export class TransactionRoutes {
         router.get('/', controller.getAll);
         router.get('/:id', controller.getByID);
         router.get('/:id', controller.getByAccountID);
-        // router.post('/', controller.create);
-        // router.patch('/:id', controller.update);
-        // router.delete('/:id', controller.deleteByID);
 
         return router;
     }
