@@ -15,7 +15,7 @@ async function main() {
 
   try {
     // Conectar a la base de datos
-    await sequelize.sync();
+    await sequelize.sync({alter: true});
     console.log('Conexión exitosa a la base de datos con Sequelize');
     // Iniciar el servidor
     const server = new Server({

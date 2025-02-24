@@ -9,19 +9,19 @@ export class GenericController {
     ) { }
 
     create = (req: Request, res: Response) => {
-        const data = req.body
+        const { data } = req.body
 
 
         this.genericService.create(data)
             .then((data) => res.json(data))
-            .catch(error => res.status(400).json({ error }))
+            .catch(error => res.status(400).json({ error: error.message }))
     }
 
     getAll = (req: Request, res: Response) => {
 
         this.genericService.getAll()
             .then((data) => res.json(data))
-            .catch(error => res.status(400).json({ error }))
+            .catch(error => res.status(400).json({ error: error.message }))
     }
 
     getByID = (req: Request, res: Response) => {
@@ -30,16 +30,16 @@ export class GenericController {
 
         this.genericService.getByID(id)
             .then((data) => res.json(data))
-            .catch(error => res.status(400).json({ error }))
+            .catch(error => res.status(400).json({ error: error.message }))
     }
 
     update = (req: Request, res: Response) => {
-        const data = req.body
+        const { data } = req.body
         const { id } = req.params
 
         this.genericService.update(data)
             .then((data) => res.json(data))
-            .catch(error => res.status(400).json({ error }))
+            .catch(error => res.status(400).json({ error: error.message }))
     }
 
     deleteByID = (req: Request, res: Response) => {
@@ -47,7 +47,7 @@ export class GenericController {
 
         this.genericService.deleteByID(id)
             .then((data) => res.json(data))
-            .catch(error => res.status(400).json({ error }))
+            .catch(error => res.status(400).json({ error: error.message }))
     }
 
 }
