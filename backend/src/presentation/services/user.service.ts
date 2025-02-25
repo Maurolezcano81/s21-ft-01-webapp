@@ -20,38 +20,52 @@ export class UserService {
         }
     }
 
-    public async getAll() {
-        return 'getAll ok'
-    }
 
-    public async getByID(id: any) {
-        return {
-            message: 'getByID ok',
-            id
+
+    public async getAllUser() {
+        try {
+            const users = await User.findAll();
+            if (!users) {
+                throw new Error("users not found")
+            }
+            return users;
+
+        } catch (error) {
+            throw new Error(`Internal server error: ${error}`)
         }
     }
 
-    public async getByEmail(email: any) {
-        const res = await User.findOne({ where: { email } })
 
-        if (res) throw new Error('Email already exists')
-        return
+
+
+    public async getByID(id: any) {
+    return {
+        message: 'getByID ok',
+        id
     }
+}
+
+    public async getByEmail(email: any) {
+    const res = await User.findOne({ where: { email } })
+
+    if (!res) throw new Error('Email no longer exists')
+    return res
+}
 
     public async getByDni(dni: string) {
-        const res = await User.findOne({ where: { dni } })
+    const res = await User.findOne({ where: { dni } })
 
-        if (res) throw new Error('DNI already exists')
-        return
-    }
+    if (res) throw new Error('DNI already exists')
+    return
+}
 
     public async update(data: any) {
-        return 'update ok'
-    }
+    return 'update ok'
+}
 
     public async deleteByID(id: any) {
-        return 'deleteByID ok'
-    }
+    return 'deleteByID ok'
+}
 
 
 }

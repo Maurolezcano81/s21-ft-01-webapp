@@ -53,4 +53,29 @@ export class AuthController {
             .catch(error => res.status(400).json({ error: error.message }))
     }
 
+    login = (req: Request, res: Response) => {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            throw new Error("Falta email o contraseña")
+        }
+
+        this.authService.loginUser(email, password)
+            .then((token) => {
+                if (!token) {
+                    throw new Error("credenciales incorrectas")
+                }
+
+                res.cookie("token", token, {
+                    httpOnly: true,
+                    secure: false,
+                    maxAge: 3600000, // 1 hora
+                }).status(200).json({ message: "Autenticado" });
+            })
+            .catch(err => {
+                res.status(500).json({ message: "Error en el login", error: err.message });
+            });
+    };
+
+
 }
