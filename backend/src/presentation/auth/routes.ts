@@ -2,6 +2,7 @@ import { Router } from "express";
 import { AuthController } from "./controller";
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
+import { AccountService } from "../services/account.service";
 
 export class AuthRoutes {
 
@@ -10,7 +11,8 @@ export class AuthRoutes {
         const router = Router();
 
         const userService = new UserService();
-        const service = new AuthService(userService);
+        const accountService= new AccountService();
+        const service = new AuthService(userService, accountService);
 
         const controller = new AuthController(service);
 
