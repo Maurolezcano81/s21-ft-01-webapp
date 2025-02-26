@@ -3,7 +3,7 @@ import { PublicRoutes } from "./modules/public.routes";
 import { PrivateRoutes } from "./modules/private.routes";
 import { ROUTES } from "./routes";
 import NotFound from "../pages/NotFound";
-import SkeletonLoading from "../component/SkeletonLoading";
+import SkeletonLoading from "../components/SkeletonLoading";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const AppRouter = () => {
