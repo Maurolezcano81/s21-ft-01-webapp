@@ -2,6 +2,7 @@ import {bcryptAdapter} from "../../config/bcrypt.adapter";
 import jwt from "jsonwebtoken";
 import { JwtAdapter } from "../../config/jwt.adapter";
 import { UserService } from "./user.service";
+import { AccountService } from "./account.service";
 
 const SECRET_KEY = process.env.SECRET_KEY || "default_secret_key";
 
@@ -28,7 +29,7 @@ interface UserLogin {
 }
 
 export class AuthService {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private accountService: AccountService) {}
 
     public async register(user: UserRegister) {
         if (!user.name) throw new Error(`name missing`);
@@ -49,8 +50,10 @@ export class AuthService {
                 name: newUser.name, 
                 last_name: newUser.last_name 
             });
+          
 
             if (!token) throw new Error('Error while creating JWT');
+            await this.accountService.registerAccount(newUser.user_id)
 
             return { newUser, token };
         } catch (error) {
