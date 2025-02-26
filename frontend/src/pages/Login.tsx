@@ -58,7 +58,7 @@ const Login: React.FC = () => {
                         {/* Botón de envío */}
                         <button
                             type="submit"
-                            className="w-full mt-6 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-colors"
+                            className="w-full mt-6 px-6 py-3 bg-primary text-white rounded-lg font-monserrat hover:bg-primary-dark transition-colors"
                             aria-label="Iniciar sesión"
                         >
                             Iniciar sesión
@@ -67,11 +67,11 @@ const Login: React.FC = () => {
                         {/* Enlace al registro */}
                         <Link
                             to="/register" // Ruta de la página de registro
-                            className="w-full text-center text-gray-600 text-lg mt-4"
+                            className="w-full font-monserrat text-center text-gray-600 text-lg mt-4"
                             aria-label="Registrarse"
                         >
                             ¿No tienes una cuenta?{" "}
-                            <span className="font-bold text-blue-600 hover:underline">
+                            <span className="font-monserrat text-red-600 hover:underline">
                                 Regístrate
                             </span>
                         </Link>

@@ -8,7 +8,7 @@ const PasswordSection = () => {
     } = useFormContext(); 
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="font-monserrat flex flex-col gap-4">
             <label htmlFor="password">Contraseña</label>
             <Controller
                 name="password"
