@@ -5,6 +5,7 @@ import Account from "./account.model";
 import User from "./user.model";
 import City from "./city.model";
 import Country from "./country.model";
+import { OTP } from "./OTP.model";
 
 export const initModels = (sequelize: Sequelize) => {
   AccountType.initModel(sequelize);
@@ -12,6 +13,7 @@ export const initModels = (sequelize: Sequelize) => {
   Country.initModel(sequelize);
   City.initModel(sequelize);
   User.initModel(sequelize);
+  OTP.initModel(sequelize);
 
   // Definir relaciones
   Account.belongsTo(AccountType, { foreignKey: "account_type_id" });
