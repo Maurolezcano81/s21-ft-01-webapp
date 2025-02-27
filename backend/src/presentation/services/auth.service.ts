@@ -122,7 +122,7 @@ export class AuthService {
         }
 
         return {
-            message: "Usuario creado exitosamente"
+            message: "Usuario confirmado exitosamente"
         };
     }
 
