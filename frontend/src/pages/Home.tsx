@@ -11,7 +11,7 @@ import { YouTube } from "../components/svg/YouTube";
 export default function Home () {
   return (
     <div className="w-full min-h-[4428px] bg-[url('/backgroundHome.png')] bg-no-repeat bg-center flex flex-col bg-[length:100%_100%] pt-16 text-white font-monserrat">
-      <div className="px-10">
+      <div className="px-10 w-full max-w-[2040px] mx-auto">
         <Navbar />
         <div className="mt-24 flex flex-col gap-4">
           <h2 className="text-5xl font-extrabold">Te damos la bienvenida a <span className="border-b-2 border-b-primary">{nameLogo}</span></h2>
@@ -68,7 +68,7 @@ export default function Home () {
             </div>
           </div>
         </div>
-        <div className="flex mt-30 px-10">
+        <div className="flex mt-30 px-10 justify-between">
           <div className="flex flex-col gap-2 justify-center">
             <h2 className="text-5xl font-extrabold">La manera inteligente de usar tus tarjetas </h2>
             <p className="text-3xl">Te bonificamos tu primer tarjeta de débito</p>
@@ -126,9 +126,9 @@ export default function Home () {
             </div>
           </div>
         </div>
-        <div className="mt-30">
+        <div className="mt-30 flex justify-center w-full items-center flex-col">
           <h2 className="text-5xl font-medium text-center mb-30"><span className="text-primary">Preguntas</span> frecuentes</h2>
-          <div className="grid grid-cols-2 gap-10 mt-15 px-40 justify-center items-center">
+          <div className="grid grid-cols-2 gap-10 mt-15">
             <div className="flex flex-col gap-7 bg-[#27322F3D]/76 rounded-4xl p-13 backdrop-blur-xs w-[490px] text-xl font-light">
               <p>¿Cómo abro una cuenta en nuestro banco?</p>
               <hr />
@@ -152,7 +152,7 @@ export default function Home () {
           </div>
         </div>
       </div>
-      <footer className="bg-[#262626] w-full mt-auto text-neutral-400 relative px-10 py-5 h-80 text-sm flex justify-between">
+      <footer className="bg-[#262626] w-full mt-auto text-neutral-400 relative px-10 py-5 h-80 text-sm flex justify-between max-w-[2040px] mx-auto">
         <div className="flex gap-25 h-full">
           <div className="flex flex-col h-full gap-4">
             <h3 className="uppercase text-xs">Servicios</h3>
