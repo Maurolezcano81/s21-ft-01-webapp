@@ -70,7 +70,7 @@ export default function Home () {
         </div>
         <div className="flex mt-30 px-10 justify-between">
           <div className="flex flex-col gap-2 justify-center">
-            <h2 className="text-5xl font-extrabold">La manera inteligente de usar tus tarjetas </h2>
+            <h2 className="text-5xl font-extrabold">La manera inteligente de <br /> usar tus tarjetas </h2>
             <p className="text-3xl">Te bonificamos tu primer tarjeta de débito</p>
           </div>
           <img src="/groupCard.png" alt="" />
