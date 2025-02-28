@@ -2,6 +2,7 @@ import { Router } from "express";
 import { OperationController } from "./controller";
 import { OperationService } from "../services/operation.service";
 import { TransactionService } from "../services/transaction.service";
+import { AccountService } from "../services/account.service";
 
 export class OperationRoutes {
 
@@ -9,8 +10,9 @@ export class OperationRoutes {
 
         const router = Router();
 
-        const transactionService = new TransactionService();
-        const service = new OperationService(transactionService);
+        const accountService = new AccountService();
+        const transactionService = new TransactionService(accountService);
+        const service = new OperationService(transactionService, accountService);
 
         const controller = new OperationController(service);
 

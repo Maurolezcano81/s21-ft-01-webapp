@@ -1,6 +1,6 @@
 import Account from '../../data/models/account.model';
 import Transaction from '../../data/models/transaction.model';
-import { setAccountBalance } from './account.service';
+import { AccountService } from './account.service';
 
 interface TransactionInfo {
     operation_id: number;
@@ -26,13 +26,13 @@ interface CreateTransaction {
 
 export class TransactionService {
 
-    constructor() { }
+    constructor(private accountService: AccountService) { }
 
     public async create(transaction: any) {
 
         try {
             const newTransaction = await Transaction.create(transaction)
-            await setAccountBalance(newTransaction.account_id, newTransaction.balance_after)
+            await this.accountService.setAccountBalance(newTransaction.account_id, newTransaction.balance_after)
             return
 
         } catch (error) {

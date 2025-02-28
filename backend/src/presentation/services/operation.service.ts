@@ -1,13 +1,13 @@
 import Operation from '../../data/models/operation.model';
 import OperationType from '../../data/models/operationType.model';
 import { TransactionService } from './transaction.service';
-import { getAccountBalance } from './account.service';
+import { AccountService } from './account.service';
 import sequelize from '../../data/db';
 
 
 export class OperationService {
 
-    constructor(private transactionService: TransactionService) { }
+    constructor(private transactionService: TransactionService, private accountService: AccountService) { }
 
     public async create(operation: any) {
 
@@ -22,11 +22,11 @@ export class OperationService {
 
                 case 1: {
 
-                    const senderBalanceBefore = await getAccountBalance(operation.sender_account_id)
+                    const senderBalanceBefore = await this.accountService.getAccountBalance(operation.sender_account_id)
                     if (senderBalanceBefore < operation.ammount) throw new Error(`Balance is lower than operation ammount`);
 
                     operation.senderBalanceBefore = senderBalanceBefore
-                    operation.recieverBalanceBefore = await getAccountBalance(operation.reciever_account_id)
+                    operation.recieverBalanceBefore = await this.accountService.getAccountBalance(operation.reciever_account_id)
 
                     this.transactionService.transfer(operation);
 

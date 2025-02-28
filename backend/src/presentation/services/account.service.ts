@@ -3,88 +3,69 @@ import sequelize from "../../data/db";
 import Account from "../../data/models/account.model";
 import AccountType from "../../data/models/accountType.model";
 
-<<<<<<< HEAD
 export class AccountService {
-    public async registerAccount(userId: number) {
-        const transaction: Transaction = await sequelize.transaction();
-        try {
-            // Buscar el tipo de cuenta "corriente"
-            const accountType = await AccountType.findOne({
-                where: { name: "Corriente" },
-            });
-            
-            if (!accountType) {
-                throw new Error("Tipo de cuenta 'corriente' no encontrado");
-            }
+  public async registerAccount(userId: number) {
+    const transaction: Transaction = await sequelize.transaction();
+    try {
+      // Buscar el tipo de cuenta "corriente"
+      const accountType = await AccountType.findOne({
+        where: { name: "Corriente" },
+      });
 
-            // Crear la cuenta bancaria
-            const account = await Account.create(
-                {
-                    user_id: userId,
-                    account_type_id: accountType.account_type_id,
-                },
-                { transaction }
-            );
+      if (!accountType) {
+        throw new Error("Tipo de cuenta 'corriente' no encontrado");
+      }
 
-            await transaction.commit();
-            return account;
-        } catch (error) {
-            await transaction.rollback();
-            throw new Error(`Error al crear la cuenta: ${(error as Error).message}`);
-        }
-=======
-export const registerAccount = async (userId: number) => {
+      // Crear la cuenta bancaria
+      const account = await Account.create(
+        {
+          user_id: userId,
+          account_type_id: accountType.account_type_id,
+        },
+        { transaction }
+      );
 
-
-  const transaction: Transaction = await sequelize.transaction();
-  try {
-
-    // Buscar el usuario y si no existe agregar un error
-    // Buscar el tipo de cuenta "corriente"
-    const accountType = await AccountType.findOne({
-      where: { name: "corriente" },
-    });
-
-    if (!accountType) {
-      throw new Error("Tipo de cuenta 'corriente' no encontrado");
->>>>>>> feature/back-transactions
+      await transaction.commit();
+      return account;
+    } catch (error) {
+      await transaction.rollback();
+      throw new Error(`Error al crear la cuenta: ${(error as Error).message}`);
     }
-}
-<<<<<<< HEAD
-=======
-
-export const getAccountBalance = async (account_id: string) => {
-
-  try {
-    const account = await Account.findByPk(account_id);
-
-    if (!account) throw new Error('Account not found')
-
-    return account.balance;
-
-  } catch (error) {
-    throw new Error(`Internal server error: ${error}`)
   }
 
-}
+  public async getAccountBalance(account_id: string) {
 
-export const setAccountBalance = async (account_id: number, balance: number) => {
+    try {
+      const account = await Account.findByPk(account_id);
 
-  try {
-    const account = await Account.findByPk(account_id);
+      if (!account) throw new Error('Account not found')
 
-    if (!account) throw new Error('Account not found')
+      return account.balance;
 
-    account.balance = balance;
+    } catch (error) {
+      throw new Error(`Internal server error: ${error}`)
+    }
 
-    account.save()
-
-    return
-
-  } catch (error) {
-    throw new Error(`Internal server error: ${error}`)
   }
 
+  public async setAccountBalance(account_id: number, balance: number) {
+
+    try {
+      const account = await Account.findByPk(account_id);
+
+      if (!account) throw new Error('Account not found')
+
+      account.balance = balance;
+
+      account.save()
+
+      return
+
+    } catch (error) {
+      throw new Error(`Internal server error: ${error}`)
+    }
+
+  }
 }
 
->>>>>>> feature/back-transactions
+
