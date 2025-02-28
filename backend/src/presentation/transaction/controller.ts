@@ -38,7 +38,7 @@ export class TransactionController {
 
         const numberId = Number(id)
 
-        this.transactionService.getByID(numberId)
+        this.transactionService.getByAccountID(numberId)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }

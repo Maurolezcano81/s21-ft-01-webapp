@@ -100,7 +100,7 @@ export class TransactionService {
         }
     }
 
-    public async getByAccountID(account_id: string) {
+    public async getByAccountID(account_id: number) {
         try {
 
             const transactions = await Transaction.findAll({ where: { account_id } })
@@ -114,6 +114,7 @@ export class TransactionService {
         }
     }
 
+    //TODO: Falta agrupar por fecha y limpiar data
     public async getByUserID(user_id: number) {
         try {
 
@@ -123,8 +124,7 @@ export class TransactionService {
                 },
                 include: {
                     model: Account,
-                },
-                order: ['date', 'DESC'], group: 'date'
+                }
             })
 
             if (!transactions) throw new Error('User has not transactions')
@@ -149,7 +149,6 @@ export class TransactionService {
             throw new Error(`Internal server error: ${error}`)
         }
     }
-
 
     public async update(name: string, id: number) {
 
