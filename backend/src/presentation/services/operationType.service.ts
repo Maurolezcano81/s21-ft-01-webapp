@@ -18,7 +18,7 @@ export class OperationTypeService {
 
     public async getAll() {
         try {
-            const operationTypes = await OperationType.findAll();
+            const operationTypes = await OperationType.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } });
 
             if (operationTypes.length <= 0) throw new Error('No operation types found')
 
@@ -33,7 +33,7 @@ export class OperationTypeService {
     public async getByID(id: number) {
 
         try {
-            const operationType = await OperationType.findByPk(id);
+            const operationType = await OperationType.findByPk(id, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
 
             if (!operationType) throw new Error('Operation type not found')
 
@@ -55,7 +55,7 @@ export class OperationTypeService {
     public async update(name: string, id: number) {
 
         try {
-            const operationType = await OperationType.findByPk(id);
+            const operationType = await OperationType.findByPk(id, { attributes: { exclude: ['createdAt'] } });
 
             if (!operationType) throw new Error('Operation type not found')
 

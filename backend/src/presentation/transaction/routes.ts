@@ -15,6 +15,7 @@ export class TransactionRoutes {
         router.get('/', controller.getAll);
         router.get('/:id', controller.getByID);
         router.get('/:id', controller.getByAccountID);
+        router.get('/:id', controller.getByUserID);
 
         return router;
     }

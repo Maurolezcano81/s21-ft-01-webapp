@@ -43,6 +43,15 @@ export class TransactionController {
             .catch(error => res.status(400).json({ error: error.message }))
     }
 
+    getByUserID = (req: Request, res: Response) => {
+        const { id } = req.params
+
+        const numberId = Number(id)
+
+        this.transactionService.getByUserID(numberId)
+            .then((data) => res.json(data))
+            .catch(error => res.status(400).json({ error: error.message }))
+    }
 
     // update = (req: Request, res: Response) => {
     //     const { name } = req.body

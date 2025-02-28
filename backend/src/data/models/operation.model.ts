@@ -18,6 +18,7 @@ class Operation extends Model {
                 date: {
                     type: DataTypes.DATE,
                     allowNull: false,
+                    defaultValue: new Date()
                 },
                 ammount: {
                     type: DataTypes.INTEGER,
