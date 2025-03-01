@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Account from '../../data/models/account.model';
 import Transaction from '../../data/models/transaction.model';
 import { AccountService } from './account.service';
@@ -114,22 +115,50 @@ export class TransactionService {
         }
     }
 
-    //TODO: Falta agrupar por fecha y limpiar data
-    public async getByUserID(user_id: number) {
+    //TODO: Falta agrupar por fecha
+    public async getByUserID(user_id: number, month: string) {
         try {
+            // Construcción del rango de fechas
+            const startDate = `${month}-01T00:00:00.000Z`; // Primer día del mes
+            const endDate = new Date(new Date(startDate).setMonth(new Date(startDate).getMonth() + 1)).toISOString(); // Primer día del siguiente mes
+
 
             const transactions = await Transaction.findAll({
                 where: {
-                    '$Account.user_id$': user_id
+                    '$Account.user_id$': user_id,
+                    date: { [Op.gte]: startDate, [Op.lt]: endDate } // ✅ Filtrar por mes usando un rango
                 },
-                include: {
+                include: [{
                     model: Account,
-                }
+                    attributes: {
+                        exclude: ['account_id',
+                            'date',
+                            'account_number',
+                            'balance',
+                            'account_type_id',
+                            'user_id',
+                            'createdAt',
+                            'updatedAt']
+                    }
+                }],
+                attributes: { exclude: ['balance_before', 'balance_after', 'account_id', 'operation_id', 'createdAt', 'updatedAt'] },
+                order: [['date', 'DESC']]
             })
 
-            if (!transactions) throw new Error('User has not transactions')
+            if (!transactions || transactions.length === 0) throw new Error('User has not transactions')
 
-            return transactions;
+            // Agrupar por fecha (YYYY-MM-DD)
+            const groupedTransactions = transactions.reduce((acc: Record<string, any[]>, transaction) => {
+                const dateKey = new Date(transaction.date).toISOString().split('T')[0]; // Extrae YYYY-MM-DD
+
+                if (!acc[dateKey]) {
+                    acc[dateKey] = [];
+                }
+                acc[dateKey].push(transaction);
+                return acc;
+            }, {});
+
+            return groupedTransactions;
 
         } catch (error) {
             throw new Error(`Internal server error: ${error}`)

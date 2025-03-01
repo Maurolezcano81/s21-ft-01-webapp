@@ -45,10 +45,11 @@ export class TransactionController {
 
     getByUserID = (req: Request, res: Response) => {
         const { id } = req.params
+        const { month } = req.body
 
         const numberId = Number(id)
 
-        this.transactionService.getByUserID(numberId)
+        this.transactionService.getByUserID(numberId, month)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
