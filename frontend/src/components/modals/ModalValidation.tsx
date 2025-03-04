@@ -115,8 +115,9 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
                         {showImage && (   
                             <div className="flex flex-col items-center justify-center space-y-1">  
                                 <h2 className="text-2xl md:text-4xl font-bold font-monserrat text-white mb-0">   
-                                    ¡Bienvenido al CapyClub!   
-                                </h2>   
+                                    ¡Felicitaciones!   
+                                </h2> 
+                                <p className="text-black font-monserrat text-base md:text-lg mb-2">Ya podés disfrutar los beneficios de CapyBank</p>  
                                 <img   
                                     src={Capymonoculus}   
                                     alt="Capybara con monoculo"   
