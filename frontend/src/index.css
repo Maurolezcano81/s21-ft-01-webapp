@@ -53,15 +53,14 @@ input{
   background-color: #00627C;
 }
 
-/* Modal */
-
-
-.bg-coral {  
-  background-color: coral;   
-}  
+/* Modal Validación email*/
 
 .bg-gradient-to-b {  
-  background-image: linear-gradient(to bottom, #fc5959 0%, #fdbbba 100%);  
+  background-image: linear-gradient(to bottom, #ff3939 0%, #fed0d0 100%);  
+} 
+
+.special-input {  
+  padding: 0;  
 }
 
 /* Estilos para el círculo del check */  
