@@ -52,3 +52,65 @@ input{
 .blue-button:hover {
   background-color: #00627C;
 }
+
+/* Modal */
+
+
+.bg-coral {  
+  background-color: coral;   
+}  
+
+.bg-gradient-to-b {  
+  background-image: linear-gradient(to bottom, #fc5959 0%, #fdbbba 100%);  
+}
+
+/* Estilos para el círculo del check */  
+.checkmark {  
+  width: 90px;  
+  height: 90px;  
+  border-radius: 50%;  
+  background-color: var(--color-primary);  
+  display:inline-block; 
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  transition: transform 0.1s ease;   
+}  
+
+.checkmark.animate-check {  
+  animation: grow-shrink 1.5s forwards;   
+  
+}  
+
+.check-symbol {  
+  position: absolute;  
+  top: 50%;  
+  left: 50%;  
+  width: 25px;  
+  height: 45px;  
+  border: solid white; 
+  border-width: 0 9px 9px 0;  
+  transform: translate(-50%, -50%) rotate(45deg);  
+}  
+
+/* Animaciones para el check */  
+.animate-check {  
+  animation: grow 1.0s forwards, shrink 1.0s 1.0s forwards;   
+}  
+
+@keyframes grow-shrink {  
+  0% {  
+      transform: translate(-50%, -50%) scale(0);   
+      opacity: 1;  
+  }  
+  50% {  
+      transform: translate(-50%, -50%) scale(9);  
+      opacity: 1;  
+  }  
+  100% {  
+      transform: translate(-50%, -50%) scale(1);
+
+      opacity: 0;  
+  }  
+}  
