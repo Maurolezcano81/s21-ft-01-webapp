@@ -18,6 +18,7 @@ export class AuthRoutes {
 
         router.post('/register', controller.register);
         router.post('/login', controller.login)
+        router.post("/verify", controller.verifyRegisterController);
 
         return router;
     }
