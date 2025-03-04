@@ -11,22 +11,26 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
     const [showContent, setShowContent] = useState(true);  
     const [showImage, setShowImage] = useState(false);  
     const [code, setCode] = useState(Array(6).fill(''));   
+    const [errorMessage, setErrorMessage] = useState('');   
 
     useEffect(() => {  
         if (isOpen) {  
             setAnimating(false);  
             setShowContent(true);  
             setShowImage(false);   
-            setCode(Array(6).fill('')); // Reinicia código al abrir  
+            setCode(Array(6).fill('')); // Reinicia código al abrir 
+            setErrorMessage(''); 
         }  
     }, [isOpen]);  
 
     if (!isOpen) return null;  
 
     const handleChange = (index: number, value: string) => {  
-        const newCode = [...code];  
-        newCode[index] = value;  
-        setCode(newCode);  
+        if (value === '' || /^[0-9]$/.test(value)) {  
+            const newCode = [...code];  
+            newCode[index] = value;  
+            setCode(newCode);  
+            setErrorMessage(''); 
         
         // Pasar al siguiente input   
         if (value && index < 5) {  
@@ -34,7 +38,10 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
             if (nextInput) {  
                 (nextInput as HTMLInputElement).focus();  
             }  
-        }  
+        } 
+        } else {  
+            setErrorMessage('* Solo se permiten números');   
+        }
     };  
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, index: number) => {  
@@ -47,23 +54,28 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
     };  
 
     const handleSubmit = () => {  
-        if (code.join('').length === 6) {  
+        if (code.join('').length < 6) {  
+            setErrorMessage('* Por favor, completa todos los campos con números');  
+            return; // Prevent further execution  
+        }  
+        
+        if (code.join('').length === 6) {
             setShowContent(false);   
             setAnimating(true);   
             setTimeout(() => {  
                 setShowImage(true);  
-            }, 900);   
+            }, 600);   
             
             setTimeout(() => {  
                 // Redirigir o cerrar modal  
                 onClose();   
-            }, 2000);  
+            }, 3000);  
         }  
     };  
 
     return (  
         <div className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur">  
-            <div className="bg-gradient-to-b from-coral-400 to-coral-200 p-6 rounded-lg shadow-lg text-center w-full h-full max-w-lg mx-5 flex flex-col justify-center">  
+            <div className="bg-gradient-to-b p-6 rounded-lg shadow-lg text-center w-full h-full max-w-lg mx-5 flex flex-col justify-center">  
 
                 {showContent ? (  
                     <>  
@@ -80,11 +92,13 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
                                     value={digit}  
                                     onChange={(e) => handleChange(index, e.target.value)}  
                                     onKeyDown={(e) => handleKeyDown(e, index)}   
-                                    className="w-12 h-12 text-center border border-gray-300 rounded-md"  
+                                    className="w-16 h-16 text-center border border-gray-300 rounded-md text-black special-input"  
                                 />  
                             ))}  
                         </div>  
                         
+                        {errorMessage && <p className="text-red-500 mb-2">{errorMessage}</p>}  
+
                         <button   
                             onClick={handleSubmit}   
                             className="mx-auto block mt-4 px-6 py-3 bg-primary text-white rounded-lg font-monserrat hover:bg-primary-dark transition-colors">  
