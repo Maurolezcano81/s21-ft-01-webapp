@@ -9,7 +9,7 @@ import PersonalSection from "../components/register/PersonalSection";
 import NacionalitySection from "../components/register/NacionalitySection";
 import PrivateDataSection from "../components/register/PrivateDataSection";
 import FooterForm from "../components/register/FooterForm";
-// import { useAuth } from "../hooks/useAuth";
+import { useRegister } from "../hooks/useAuth";
 
 const Register: React.FC = () => {
 
@@ -18,12 +18,11 @@ const Register: React.FC = () => {
         mode: "all"
     })
 
-    // const { mutate: login, isSuccess, isPending, isError, error } = useAuth()
-
+    const { mutate: registerFunction, isSuccess, isPending, isError, error } = useRegister()
 
     const onSubmit = (data: FormDataRegister) => {
-        // login(data)
-        console.log(data)
+        registerFunction(data)
+        console.log(data);
     }
 
 
@@ -42,13 +41,33 @@ const Register: React.FC = () => {
 
                 <PersonalSection register={register} errors={errors} />
 
-                <NacionalitySection register={register} errors={errors} trigger={trigger} setValue={setValue} />
+                <NacionalitySection register={register} control={control} errors={errors} trigger={trigger} setValue={setValue} />
 
                 <PrivateDataSection control={control} register={register} errors={errors} />
 
                 <FooterForm
-                // isPending={isPending} errors={error}
+                    isPending={isPending} errors={errors}
                 />
+
+                <p>
+
+                    {
+                        isSuccess && (
+                            <p>
+                                {`${isSuccess}`}
+                            </p>
+                        )
+                    }
+
+                    {
+                        isError && error && (
+                            <p className="p-4 bg-red-200">
+                                {`${error.message}`}
+                            </p>
+                        )
+                    }
+
+                </p>
             </form>
 
             <RightSide />
