@@ -1,29 +1,24 @@
 import { Request, Response } from "express";
-import { CityService } from "../services/city.service";
+import { OperationTypeService } from "../services/operationType.service";
 
 
-export class CityController {
+export class OperationTypeController {
 
     constructor(
-        public readonly cityService: CityService,
+        public readonly operationTypeService: OperationTypeService,
     ) { }
 
     create = (req: Request, res: Response) => {
-        //TODO: Solve
-        let { name, country_id } = req.body
+        const { name } = req.body
 
-        country_id = Number(country_id)
-
-        const city = { name, country_id }
-
-        this.cityService.create(city)
+        this.operationTypeService.create(name)
             .then((data) => res.status(201).json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
 
     getAll = (req: Request, res: Response) => {
 
-        this.cityService.getAll()
+        this.operationTypeService.getAll()
             .then((data) => res.json(data))
             .catch(error => { console.log(error); res.status(400).json({ error: error.message }) })
     }
@@ -33,29 +28,18 @@ export class CityController {
 
         const numberId = Number(id)
 
-        this.cityService.getByID(numberId)
-            .then((data) => res.json(data))
-            .catch(error => res.status(400).json({ error: error.message }))
-    }
-
-    getByCountryID = (req: Request, res: Response) => {
-        const { id } = req.params
-
-        const numberId = Number(id)
-
-        this.cityService.getByCountryID(numberId)
+        this.operationTypeService.getByID(numberId)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
 
     update = (req: Request, res: Response) => {
-        let { name, country_id } = req.body
+        const { name } = req.body
         const { id } = req.params
 
-        const nId = Number(id)
-        let nCountry_id = Number(country_id)
+        const numberId = Number(id)
 
-        this.cityService.update(nId, name, nCountry_id)
+        this.operationTypeService.update(name, numberId)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
@@ -65,7 +49,7 @@ export class CityController {
 
         const numberId = Number(id)
 
-        this.cityService.deleteByID(numberId)
+        this.operationTypeService.deleteByID(numberId)
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }

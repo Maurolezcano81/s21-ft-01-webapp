@@ -10,17 +10,16 @@ export const useAuth = () => {
   })
 }
 
-
 export const useRegister = () => {
   const mutation = useMutation({
     mutationFn: (data: RegisterUser) => register(data),
     onSuccess: (data) => {
-      console.log("Registro exitoso");
-      console.log(data);
+      console.log("Finalizo la operación de registro");
+      console.log("Datos de la operación: ", data);
     },
-    onError(error: Error) {
-      console.log("Error en el registro");
-      console.log(error)
+    onError: (error: Error) => {
+      const errorMessage = error.message.split(": ").pop();
+      console.error("Error en el registro:", errorMessage);
     }
   })
 

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react"; 
+import ModalValidation from "../components/modals/ModalValidation";
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +13,7 @@ import FooterForm from "../components/register/FooterForm";
 import { useRegister } from "../hooks/useAuth";
 
 const Register: React.FC = () => {
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const { register, handleSubmit, control, trigger, setValue, formState: { errors } } = useForm<FormDataRegister>({
         resolver: zodResolver(registerSchema),
@@ -22,9 +24,9 @@ const Register: React.FC = () => {
 
     const onSubmit = (data: FormDataRegister) => {
         registerFunction(data)
+        setModalOpen(true);
         console.log(data);
     }
-
 
     return (
         <div className="flex md:bg-primary flex-col-reverse md:flex-row min-h-screen items-center justify-center">
@@ -49,7 +51,7 @@ const Register: React.FC = () => {
                     isPending={isPending} errors={errors}
                 />
 
-                <p>
+                <div>
 
                     {
                         isSuccess && (
@@ -67,10 +69,11 @@ const Register: React.FC = () => {
                         )
                     }
 
-                </p>
+                </div>
             </form>
 
             <RightSide />
+            <ModalValidation isOpen={isModalOpen} onClose={() => setModalOpen(false)} />  
         </div>
 
     )

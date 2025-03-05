@@ -8,26 +8,11 @@ export const register = async (data: RegisterUser): Promise<RegisterUser> => {
     body: JSON.stringify(data)
   });
 
-  let responseJSON;
+  const responseJson = await response.json();
 
-  // Si la respuesta es exitosa
-  if (response.ok) {
-    try {
-      responseJSON = await response.json();
-      return responseJSON;
-    } catch (error) {
-      console.error('Error al procesar el JSON:', error);
-      throw new Error("Error al procesar la respuesta del servidor");
-    }
+  if (!response.ok) {
+    throw new Error(responseJson?.error || "Ha ocurrido un error al registrarse");
   }
 
-  // Si la respuesta no es exitosa, maneja el error
-  try {
-    responseJSON = await response.json();
-    throw new Error(responseJSON?.error || "Ha ocurrido un error al registrarse, intentelo nuevamente reiniciando el sitio");
-  } catch (error) {
-    // Si no hay contenido JSON en el cuerpo, maneja el error de manera genérica
-    console.log(error)
-    throw new Error("Ha ocurrido un error desconocido al registrarse");
-  }
-}
+  return responseJson;
+};

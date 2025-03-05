@@ -77,5 +77,21 @@ export class AuthController {
             });
     };
 
+    verifyRegisterController = (req: Request, res: Response) => {
+        const { token, user } = req.body;
+    
+        if (!token || !user) {
+            throw new Error("Faltan datos requeridos");
+        }
+    
+        this.authService.verifyRegister(token, user)
+            .then((userCreated) => {
+                res.status(201).json(userCreated.message);
+            })
+            .catch((err) => {
+                res.status(500).json({ message: "Error en la verificación del registro", error: err.message });
+            });
+    };
+
 
 }

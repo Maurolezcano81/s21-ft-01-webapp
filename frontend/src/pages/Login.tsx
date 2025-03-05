@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 import RightLogin from "../components/login/RightLogin";
 import EmailSection from "../components/login/EmailSection";
