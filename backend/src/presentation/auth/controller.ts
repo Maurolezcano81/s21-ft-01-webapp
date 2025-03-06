@@ -94,4 +94,16 @@ export class AuthController {
     };
 
 
+    sendingCode = (req: Request, res: Response) => {
+        const {email, name} = req.body;
+        this.authService.generateAndSendOTP(email, name)
+        .then(() => {
+            res.status(201).json("Codigo enviado");
+        })
+        .catch((err) => {
+            res.status(500).json({ message: "Error al enviar el código", error: err.message });
+        });
+
+    }
+
 }

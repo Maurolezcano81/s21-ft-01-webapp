@@ -107,12 +107,9 @@ export class AuthService {
     
         // Actualizar estado del usuario
         await userUpdate.update({ status: true });
-        await userUpdate.update({
-            status: true, 
-        });
 
         // Eliminar token si es válido o expirado
-        if (isValidToken) {
+        if (isValidToken || isValidToken === "expired") {
             await OTP.destroy({
                 where: {
                     token,
