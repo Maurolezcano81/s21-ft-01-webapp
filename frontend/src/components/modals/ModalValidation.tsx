@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';   
+import React, { useEffect, useState } from 'react';  
+import { useNavigate } from 'react-router-dom'; 
 import Capymonoculus from 'frontend/src/svgs/Capymonoculus.svg';  
 
 interface ModalValidationProps {  
@@ -11,7 +12,8 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
     const [showContent, setShowContent] = useState(true);  
     const [showImage, setShowImage] = useState(false);  
     const [code, setCode] = useState(Array(6).fill(''));   
-    const [errorMessage, setErrorMessage] = useState('');   
+    const [errorMessage, setErrorMessage] = useState(''); 
+    const navigate = useNavigate();  
 
     useEffect(() => {  
         if (isOpen) {  
@@ -67,15 +69,15 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
             }, 600);   
             
             setTimeout(() => {  
-                // Redirigir o cerrar modal  
+                navigate('/dashboard'); // Redirigir o cerrar modal  
                 onClose();   
-            }, 3000);  
+            }, 5000);  
         }  
     };  
 
     return (  
-        <div className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur">  
-            <div className="bg-gradient-to-b p-6 rounded-lg shadow-lg text-center w-full h-full max-w-lg mx-5 flex flex-col justify-center">  
+        <div className="fixed inset-0 flex items-center justify-center bg-beige backdrop-blur py-4 sm:py-10">  
+            <div className="bg-gradient-to-b rounded-lg shadow-lg text-center w-full h-full  flex flex-col justify-center mx-4 sm:mx-auto max-w-screen-sm sm:max-w-md md:max-w-lg lg:max-w-xl">  
 
                 {showContent ? (  
                     <>  
