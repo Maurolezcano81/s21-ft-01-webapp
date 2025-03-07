@@ -11,12 +11,10 @@ export class OperationService {
 
     public async create(operation: any) {
 
-        const t = await sequelize.transaction();
+        
 
         try {
-            const newOperation = await Operation.create(operation, { transaction: t })
-            operation.operation_id = newOperation.operation_id;
-            operation.date = newOperation.date;
+           
 
             switch (operation.operation_type_id) {
 
@@ -28,9 +26,13 @@ export class OperationService {
                     operation.senderBalanceBefore = senderBalanceBefore
                     operation.recieverBalanceBefore = await this.accountService.getAccountBalance(operation.reciever_account_id)
 
+            
+                    const newOperation = await Operation.create(operation)
+                    operation.operation_id = newOperation.operation_id;
+                    operation.date = newOperation.date;
                     this.transactionService.transfer(operation);
 
-                    break;
+                    return newOperation
                 }
 
                 default: {
@@ -38,11 +40,8 @@ export class OperationService {
                 }
             }
 
-            await t.commit();
-            return newOperation
 
         } catch (error) {
-            await t.rollback();
             throw new Error(`Internal server error: ${error}`)
 
         }

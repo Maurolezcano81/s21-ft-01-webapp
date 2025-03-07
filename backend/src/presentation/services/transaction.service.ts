@@ -1,7 +1,8 @@
-import { Op } from 'sequelize';
+import { Op, QueryTypes, Sequelize } from 'sequelize';
 import Account from '../../data/models/account.model';
 import Transaction from '../../data/models/transaction.model';
 import { AccountService } from './account.service';
+
 
 interface TransactionInfo {
     operation_id: number;
@@ -27,11 +28,15 @@ interface CreateTransaction {
 
 export class TransactionService {
 
-    constructor(private accountService: AccountService) { }
+    constructor(private accountService: AccountService, private sequelize: Sequelize) { }
 
     public async create(transaction: any) {
 
         try {
+
+            if (!transaction) {
+                throw new Error(`SIn transacción`);
+            }
             const newTransaction = await Transaction.create(transaction)
             await this.accountService.setAccountBalance(newTransaction.account_id, newTransaction.balance_after)
             return
@@ -63,6 +68,7 @@ export class TransactionService {
                 balance_after: transactionInfo.recieverBalanceBefore + transactionInfo.ammount,
                 account_id: transactionInfo.reciever_account_id
             }
+
 
             await this.create(sender);
             await this.create(reciever);
@@ -211,6 +217,23 @@ export class TransactionService {
             throw new Error(`Internal server error: ${error}`)
         }
 
+    }
+    public async getMonthlyTransactions(accountId: number): Promise<any[]> {
+        const query = `
+         		  SELECT TO_CHAR(t.date, 'YYYY-MM') AS year_month, 
+                    t.is_income,
+                    SUM(t.ammount) AS total_amount
+                    FROM transaction t
+                    INNER JOIN operation o ON t.operation_id = o.operation_id
+                    WHERE t.account_id = 11
+                    GROUP BY year_month, t.is_income
+                    ORDER BY year_month;
+        `;
+
+        return this.sequelize.query(query, {
+            replacements: { accountId },
+            type: QueryTypes.SELECT,  // ✅ Ahora importado correctamente
+        });
     }
 
 
