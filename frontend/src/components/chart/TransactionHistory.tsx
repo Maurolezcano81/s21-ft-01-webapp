@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'primereact/button';  
 import { DataTable } from 'primereact/datatable';  
 import { Column } from 'primereact/column';  
-import { IconTrendingUp, IconCashBanknote, IconShoppingBag, IconTrendingDown, IconToolsKitchen3, IconShirtSport, IconBusStop, IconMasksTheater, IconHeartbeat, IconProps } from '@tabler/icons-react';  
-//import { Calendar } from 'primereact/calendar';  
+import { IconTrendingUp, IconCashBanknote, IconShoppingBag, IconTrendingDown, IconToolsKitchen3, IconShirtSport, IconBusStop, IconMasksTheater, IconHeartbeat, IconProps } from '@tabler/icons-react';    
 import { formatDateSection, formatDateTime } from '../../utils/date';  
 import { MonthPickerDemo } from './MonthPicker';  
 
@@ -37,13 +36,13 @@ interface CategoryStyle {
 }  
 
 const categoryStyles: { [key: string]: CategoryStyle } = {  
-    'Comida': { icon: IconToolsKitchen3, color: '#FF6B6B', labelColor: '#F2D7D9' },  
-    'Indumentaria': { icon: IconShirtSport, color: '#FF6B6B', labelColor: '#D7F2D7' },  
-    'Transporte': { icon: IconBusStop, color: '#FF6B6B', labelColor: '#D7D7F2' },  
-    'Entretenimiento': { icon: IconMasksTheater, color: '#FF6B6B', labelColor: '#F2D7F2' },  
-    'Salud': { icon: IconHeartbeat, color: '#FF6B6B', labelColor: '#F2E7D7' },  
-    'Acreditacion de sueldo': { icon: IconCashBanknote, color: '#206B84', labelColor: '#D3EAF2' },  
-    'otros': { icon: IconShoppingBag, color: '#FF6B6B', labelColor: '#F2D7D6' },  
+    'Comida': { icon: IconToolsKitchen3, color: '#FF6B6B', labelColor: '#FDBCFF' },  
+    'Indumentaria': { icon: IconShirtSport, color: '#FF6B6B', labelColor: '#FFC6A4' },  
+    'Transporte': { icon: IconBusStop, color: '#FF6B6B', labelColor: '#A7D6F9' },  
+    'Entretenimiento': { icon: IconMasksTheater, color: '#FF6B6B', labelColor: '#fcfbb6' },  
+    'Salud': { icon: IconHeartbeat, color: '#FF6B6B', labelColor: '#fcc5b6' },  
+    'Sueldo': { icon: IconCashBanknote, color: '#FF6B6B', labelColor: '#abebc6' },  
+    'otros': { icon: IconShoppingBag, color: '#FF6B6B', labelColor: '#c6fefc' },  
 };  
 
 const TransactionHistory: React.FC = () => {  

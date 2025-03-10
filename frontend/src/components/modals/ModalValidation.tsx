@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';   
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';   
 import Capymonoculus from 'frontend/src/svgs/Capymonoculus.svg';  
 
 interface ModalValidationProps {  
@@ -11,7 +12,8 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
     const [showContent, setShowContent] = useState(true);  
     const [showImage, setShowImage] = useState(false);  
     const [code, setCode] = useState(Array(6).fill(''));   
-    const [errorMessage, setErrorMessage] = useState('');   
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();   
 
     useEffect(() => {  
         if (isOpen) {  
@@ -67,15 +69,15 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
             }, 600);   
             
             setTimeout(() => {  
-                // Redirigir o cerrar modal  
+                navigate('/dashboard');  
                 onClose();   
-            }, 3000);  
+            }, 5000);  
         }  
     };  
 
     return (  
-        <div className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur">  
-            <div className="bg-gradient-to-b p-6 rounded-lg shadow-lg text-center w-full h-full max-w-lg mx-5 flex flex-col justify-center">  
+        <div className="fixed inset-0 flex items-center justify-center bg-beige backdrop-blur">  
+            <div className="bg-gradient-to-b p-4 rounded-lg shadow-lg text-center w-full h-full max-w-screen-md mx-auto my-5 sm:mx-0 sm:my-0 flex flex-col justify-center">  
 
                 {showContent ? (  
                     <>  
@@ -114,9 +116,12 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
 
                         {showImage && (   
                             <div className="flex flex-col items-center justify-center space-y-1">  
-                                <h2 className="text-2xl md:text-4xl font-bold font-monserrat text-white mb-0">   
+                                <h2 className="text-2xl md:text-4xl font-bold font-monserrat text-white my-2">   
                                     ¡Bienvenido al CapyClub!   
-                                </h2>   
+                                </h2> 
+                                <p className="text-grey font-monserrat text-base md:text-lg my-2">
+                                    Ya podes disfrutar los beneficios de CapyBank
+                                </p>  
                                 <img   
                                     src={Capymonoculus}   
                                     alt="Capybara con monoculo"   
