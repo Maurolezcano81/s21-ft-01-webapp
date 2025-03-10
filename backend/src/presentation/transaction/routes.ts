@@ -2,6 +2,7 @@ import { Router } from "express";
 import { TransactionService } from "../services/transaction.service";
 import { TransactionController } from "./controller";
 import { AccountService } from "../services/account.service";
+import sequelize from "../../data/db";
 
 export class TransactionRoutes {
 
@@ -10,7 +11,7 @@ export class TransactionRoutes {
         const router = Router();
         const accountService = new AccountService();
 
-        const service = new TransactionService(accountService);
+        const service = new TransactionService(accountService, sequelize);
 
         const controller = new TransactionController(service);
 
@@ -18,6 +19,7 @@ export class TransactionRoutes {
         router.get('/:id', controller.getByID);
         router.get('/account/:id', controller.getByAccountID);
         router.get('/user/:id', controller.getByUserID);
+        router.get("/transactions/:accountId", controller.getMonthlyTransactions);
 
         return router;
     }

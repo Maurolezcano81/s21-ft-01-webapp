@@ -53,6 +53,20 @@ export class TransactionController {
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
+    getMonthlyTransactions = (req: Request, res: Response) => {
+        const { accountId } = req.params; // Obtenemos accountId desde los parámetros de la URL
+
+        if (!accountId) {
+             res.status(400).json({ error: "accountId es requerido" });
+        }
+
+        this.transactionService.getMonthlyTransactions(Number(accountId))
+            .then((data) => res.json(data))
+            .catch(error => { 
+                console.error(error); 
+                res.status(400).json({ error: error.message }); 
+            });
+    }
 
     // update = (req: Request, res: Response) => {
     //     const { name } = req.body

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';   
+import React, { useEffect, useState } from 'react';  
+import { useNavigate } from 'react-router-dom'; 
 import Capymonoculus from 'frontend/src/svgs/Capymonoculus.svg';  
 
 interface ModalValidationProps {  
@@ -12,8 +12,8 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
     const [showContent, setShowContent] = useState(true);  
     const [showImage, setShowImage] = useState(false);  
     const [code, setCode] = useState(Array(6).fill(''));   
-    const [errorMessage, setErrorMessage] = useState('');
-    const navigate = useNavigate();   
+const [errorMessage, setErrorMessage] = useState(''); 
+    const navigate = useNavigate();  
 
     useEffect(() => {  
         if (isOpen) {  
@@ -69,15 +69,15 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
             }, 600);   
             
             setTimeout(() => {  
-                navigate('/dashboard');  
+                navigate('/dashboard');   
                 onClose();   
             }, 5000);  
         }  
     };  
 
     return (  
-        <div className="fixed inset-0 flex items-center justify-center bg-beige backdrop-blur">  
-            <div className="bg-gradient-to-b p-4 rounded-lg shadow-lg text-center w-full h-full max-w-screen-md mx-auto my-5 sm:mx-0 sm:my-0 flex flex-col justify-center">  
+ <div className="fixed inset-0 flex items-center justify-center bg-beige backdrop-blur py-4 sm:py-10">  
+            <div className="bg-gradient-to-b rounded-lg shadow-lg text-center w-full h-full  flex flex-col justify-center mx-4 sm:mx-auto max-w-screen-sm sm:max-w-md md:max-w-lg lg:max-w-xl">  
 
                 {showContent ? (  
                     <>  
@@ -87,7 +87,7 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
                         <div className="flex justify-center space-x-2 mb-4">  
                             {code.map((digit, index) => (  
                                 <input   
-                                    id={`code-input-${index}`} // Añadir ID único para cada input  
+                                    id={`code-input-${index}`}  
                                     key={index}  
                                     type="text"  
                                     maxLength={1}  
@@ -116,11 +116,12 @@ const ModalValidation: React.FC<ModalValidationProps> = ({ isOpen, onClose }) =>
 
                         {showImage && (   
                             <div className="flex flex-col items-center justify-center space-y-1">  
+
                                 <h2 className="text-2xl md:text-4xl font-bold font-monserrat text-white my-2">   
                                     ¡Bienvenido al CapyClub!   
                                 </h2> 
                                 <p className="text-grey font-monserrat text-base md:text-lg my-2">
-                                    Ya podes disfrutar los beneficios de CapyBank
+                                     Ya podés disfrutar los beneficios de CapyBank
                                 </p>  
                                 <img   
                                     src={Capymonoculus}   

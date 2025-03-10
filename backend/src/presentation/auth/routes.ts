@@ -19,6 +19,7 @@ export class AuthRoutes {
         router.post('/register', controller.register);
         router.post('/login', controller.login)
         router.post("/verify", controller.verifyRegisterController);
+        router.post("/sendingCode", controller.sendingCode)
 
         return router;
     }
