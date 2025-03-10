@@ -1,4 +1,3 @@
-// src/components/chart/MonthPicker.tsx  
 import React, { useState } from 'react';
 import { IconCalendarMonth } from '@tabler/icons-react';   
 
