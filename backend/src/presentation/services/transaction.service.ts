@@ -218,23 +218,38 @@ export class TransactionService {
         }
 
     }
-    public async getMonthlyTransactions(accountId: number): Promise<any[]> {
-        const query = `
-         		  SELECT TO_CHAR(t.date, 'YYYY-MM') AS year_month, 
-                    t.is_income,
-                    SUM(t.ammount) AS total_amount
-                    FROM transaction t
-                    INNER JOIN operation o ON t.operation_id = o.operation_id
-                    WHERE t.account_id = 11
-                    GROUP BY year_month, t.is_income
-                    ORDER BY year_month;
-        `;
-
-        return this.sequelize.query(query, {
-            replacements: { accountId },
-            type: QueryTypes.SELECT,  // ✅ Ahora importado correctamente
+    public async getTransactionsSummary(accountId: Number) {
+        // 1️⃣ Obtener las transacciones mensuales agrupadas por mes e ingresos/egresos
+        const monthlyTransactions = await Transaction.findAll({
+            attributes: [
+                [Sequelize.fn("TO_CHAR", Sequelize.col("date"), "YYYY-MM"), "year_month"],
+                "is_income",
+                [Sequelize.fn("SUM", Sequelize.col("ammount")), "total_amount"]
+            ],
+            where: { account_id: accountId },
+            group: ["year_month", "is_income"],
+            order: [[Sequelize.fn("TO_CHAR", Sequelize.col("date"), "YYYY-MM"), "ASC"]],
+            raw: true
         });
+    
+        // 2️⃣ Obtener los totales de ingresos y egresos
+        const totalAmounts = await Transaction.findOne({
+            attributes: [
+                [Sequelize.fn("SUM", Sequelize.literal("CASE WHEN is_income = true THEN ammount ELSE 0 END")), "total_income"],
+                [Sequelize.fn("SUM", Sequelize.literal("CASE WHEN is_income = false THEN ammount ELSE 0 END")), "total_expense"]
+            ],
+            where: { account_id: accountId },
+            raw: true
+        });
+        const balance=  await this.accountService.getAccountBalance(Number(accountId));
+    
+        return {
+            monthly: monthlyTransactions,
+            totals: totalAmounts,
+            balance
+        };
     }
+    
 
 
 

@@ -33,7 +33,7 @@ export class AccountService {
     }
   }
 
-  public async getAccountBalance(account_id: string) {
+  public async getAccountBalance(account_id: number) {
 
     try {
       const account = await Account.findByPk(account_id);

@@ -53,20 +53,19 @@ export class TransactionController {
             .then((data) => res.json(data))
             .catch(error => res.status(400).json({ error: error.message }))
     }
-    getMonthlyTransactions = (req: Request, res: Response) => {
-        const { accountId } = req.params; // Obtenemos accountId desde los parámetros de la URL
+    getTransactionsSummary = (req: Request, res: Response) => {
+        const { accountId } = req.params;
+        const numberId = Number(accountId);
 
-        if (!accountId) {
-             res.status(400).json({ error: "accountId es requerido" });
+        if (isNaN(numberId)) {
+            res.status(400).json({ error: "ID inválido" });
         }
 
-        this.transactionService.getMonthlyTransactions(Number(accountId))
+        this.transactionService.getTransactionsSummary(numberId)
             .then((data) => res.json(data))
-            .catch(error => { 
-                console.error(error); 
-                res.status(400).json({ error: error.message }); 
-            });
-    }
+            .catch(error => res.status(400).json({ error: error.message }));
+    };
+
 
     // update = (req: Request, res: Response) => {
     //     const { name } = req.body

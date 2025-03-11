@@ -19,7 +19,7 @@ export class TransactionRoutes {
         router.get('/:id', controller.getByID);
         router.get('/account/:id', controller.getByAccountID);
         router.get('/user/:id', controller.getByUserID);
-        router.get("/transactions/:accountId", controller.getMonthlyTransactions);
+        router.get("/transactions/:accountId", controller.getTransactionsSummary);
 
         return router;
     }
