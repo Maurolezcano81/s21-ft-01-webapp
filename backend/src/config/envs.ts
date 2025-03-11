@@ -22,4 +22,4 @@ export const envs = {
     BREVO_SMTP_HOST: get('BREVO_SMTP_HOST').required().asString()
 }
 
-console.log('🔍 Variables de entorno cargadas:', envs);
+console.log('🔍 Variables de entorno cargadas');
