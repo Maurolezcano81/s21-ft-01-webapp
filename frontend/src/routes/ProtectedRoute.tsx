@@ -13,8 +13,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { data, isLoading } = useAuth();
 
 
-  return children;
-  // return isAuthenticated(data, isLoading) ? children : <Navigate to="/login" />;
+  return isAuthenticated(data, isLoading) ? children : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;
