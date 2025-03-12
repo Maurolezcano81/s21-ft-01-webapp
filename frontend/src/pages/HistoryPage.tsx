@@ -2,15 +2,18 @@ import React from 'react';
 import TransactionHistory from '../components/chart/TransactionHistory';
 import AccountSummaryChart from '../components/chart/AccountSummaryCart';
 import { Transaction } from '../types/Transaction.types';
-import Sidebar from '../components/bar/Sidebar';
 import NavbarLeft from '../components/Common/NavbarLeft';
+import AsideBar from '../components/Aside/AsideBar';
 
 const HistoryPage: React.FC = () => {
     const transactionsData: Transaction[] = [];
 
-    return (
-        <div className="flex">
-            <NavbarLeft />
+    return (  
+        <div className="min-h-screen flex">  
+            {/* Navbar a la izquierda */}  
+            <div className="w-[13rem] bg-white shadow-md">  
+                <NavbarLeft />  
+            </div>  
 
             {/* Charts */}
             <div className="p-4 mx-2 flex grow-2">
@@ -23,7 +26,7 @@ const HistoryPage: React.FC = () => {
             </div>
 
             {/* Sidebar a la derecha */}
-            <Sidebar />
+            <AsideBar />
         </div>
     );
 };
