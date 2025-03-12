@@ -13,4 +13,15 @@ export interface User {
     repeatPwd?: string
 }
 
+export interface LoginResponse {
+    message: string;
+    user: {
+        id: number;
+        name: string;
+    };
+}
+
 export type RegisterUser = Omit<User, 'id'>
+
+export type LoginCredentials = Pick<User, 'email' | 'password'>
+export type UserLogged = Pick<User, 'id' | 'name'>

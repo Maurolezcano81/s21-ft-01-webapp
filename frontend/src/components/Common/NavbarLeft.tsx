@@ -31,7 +31,7 @@ const NavbarLeft = () => {
                 width={24}
                 height={24}
             />,
-            to: "/history-transaction"
+            to: "/transacciones"
         },
         {
             id: 3,

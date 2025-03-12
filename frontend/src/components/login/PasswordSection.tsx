@@ -8,33 +8,7 @@ const PasswordSection = () => {
     } = useFormContext(); 
 
     return (
-        <div className="font-monserrat flex flex-col gap-4">
-            <label htmlFor="password">Contraseña</label>
-            <Controller
-                name="password"
-                control={control}
-                render={({ field }) => (
-                    <Password
-                        {...field}
-                        toggleMask
-                        placeholder="Contraseña"
-                        className="w-full"
-                        feedback={false}
-                        invalid={!!errors.password}
-                        pt={{
-                            iconField: {
-                                root: { style: { width: "100%" } },
-                            },
-                            input: { style: { width: "100%" } },
-                            root: { style: { width: "100%" } },
-                        }}
-                    />
-                )}
-            />
-            {errors.password && (
-                <small className="text-secondary">{errors.password?.message}</small>
-            )}
-        </div>
+       
     );
 };
 
