@@ -5,7 +5,6 @@ export const ROUTES = {
   HOME: '/',
   NOTFOUND: '*',
   ABOUT: '/about',
-  SECURITY: '/security',
 
   // Privates Routes
   DASHBOARD: '/dashboard',

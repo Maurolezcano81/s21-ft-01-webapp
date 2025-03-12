@@ -5,7 +5,6 @@ const Login = lazy(() => import("../../pages/Login"));
 const Register = lazy(() => import("../../pages/Register"));
 const Home = lazy(() => import("../../pages/Home"));
 const About = lazy(() => import("../../pages/About"));
-const Security = lazy(() => import("../../pages/Security"));
 
 export const PublicRoutes = [
   {
@@ -23,10 +22,5 @@ export const PublicRoutes = [
   {
     path: ROUTES.ABOUT,
     element: <About />,
-  },
-  {
-    path: ROUTES.SECURITY,
-    element: <Security />,
   }
-
 ]

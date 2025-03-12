@@ -3,10 +3,8 @@ import { Navbar } from "../components/Common/Navbar";
 import { CreditCard } from "../components/svg/CreditCard";
 import { TransacionIcon } from "../components/svg/TransactionIcon";
 import { BankIcon } from "../components/svg/BankIcon";
-import { Logo } from "../components/svg/Logo";
-import { WhatsApp } from "../components/svg/WhatsApp";
-import { Telegram } from "../components/svg/Telegram";
-import { YouTube } from "../components/svg/YouTube";
+import { Footer } from "../components/Common/Footer";
+import { SimpleCard } from "../components/Common/SimpleCard";
 // TODO: Hacer un refactor sacar componentes comunes
 export default function Home () {
   return (
@@ -129,66 +127,22 @@ export default function Home () {
         <div className="mt-30 flex justify-center w-full items-center flex-col">
           <h2 className="text-5xl font-medium text-center mb-30"><span className="text-primary">Preguntas</span> frecuentes</h2>
           <div className="grid grid-cols-2 gap-10 mt-15">
-            <div className="flex flex-col gap-7 bg-[#27322F3D]/76 rounded-4xl p-13 backdrop-blur-xs w-[490px] text-xl font-light">
-              <p>¿Cómo abro una cuenta en nuestro banco?</p>
-              <hr />
-              ¡Abrir una cuenta es muy sencillo! Presiona el botón “Registrate” completa el formulario con tus datos y listo!
-            </div>
-            <div className="flex flex-col gap-7 bg-[#27322F3D]/76 rounded-4xl p-13 backdrop-blur-xs w-[490px] text-xl font-light">
-              <p>¿Qué documentos necesito para abrir una cuenta?</p>
-              <hr />
+            <SimpleCard title="¿Cómo abro una cuenta en nuestro banco?">
+              ¡Abrir una cuenta es muy sencillo !Presiona el botón “Registrate” completa el formulario con tus datos y listo!
+            </SimpleCard>
+            <SimpleCard title="¿Que documentos necesito para abrir una cuenta?">
               Por normativa del BCRA necesitamos que completes tus datos y que nos compartas un DNI o Pasaporte para poder verificar tu identidad y asignarte una Cuenta bancaria
-            </div>
-            <div className="flex flex-col gap-7 bg-[#27322F3D]/76 rounded-4xl p-13 backdrop-blur-xs w-[490px] text-xl font-light">
-              <p>¿Cómo accedo a mis cuentas?</p>
-              <hr />
+            </SimpleCard>
+            <SimpleCard title="¿Como puedo acceder a mis cuentas?">
               Una vez creada tu cuenta vas a encontrar una sección en la página principal con tus tarjetas asociadas, tu saldo e historial de gastos y transferencias
-            </div>
-            <div className="flex flex-col gap-7 bg-[#27322F3D]/76 rounded-4xl p-13 backdrop-blur-xs w-[490px] text-xl font-light">
-              <p>¿Mis transacciones son seguras en CapyBank?</p>
-              <hr />
+            </SimpleCard>
+            <SimpleCard title="¿Mis transacciones son seguras en CapyBank?">
               En CapyBank nos preocupamos por la seguridad de nuestros clientes, contamos con la mas alta tecnología en banca digital.
-            </div>
+            </SimpleCard>
           </div>
         </div>
       </div>
-      <footer className="bg-[#262626] w-full mt-auto text-neutral-400 relative px-10 py-5 h-80 text-sm flex justify-between max-w-[2040px] mx-auto">
-        <div className="flex gap-25 h-full">
-          <div className="flex flex-col h-full gap-4">
-            <h3 className="uppercase text-xs">Servicios</h3>
-            <ul className="flex flex-col gap-1">
-              <li>Quiero abrir una cuenta</li>
-              <li>Quiero sacar una tarjeta de débito digital</li>
-              <li>Quiero transferir dinero</li>
-            </ul>
-            <p className="mt-auto">© 2025 CapyBank</p>
-          </div>
-          <div className="flex flex-col h-full gap-4">
-            <h3 className="uppercase text-xs">Sobre nosotros</h3>
-            <ul className="flex flex-col gap-1">
-              <li>Quienes somos</li>
-              <li>Precios</li>
-              <li>Noticias</li>
-              <li>Contacto</li>
-            </ul>
-          </div>
-        </div>
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center mb-3">
-            <Logo />
-            <h1 className=" text-2xl font-semibold text-white">{nameLogo}</h1>
-          </div>
-          <p>+5491122334455</p>
-          <p>hola@capybank.com</p>
-        </div>
-        <div className="flex flex-col h-full">
-          <button className="uppercase bg-primary text-white rounded-full py-3 px-8 tracking-widest font-semibold">Contactános</button>
-          <p className="mt-auto text-right">Privacidad</p>
-        </div>
-        <div className="absolute right-0 left-0 bottom-3 w-full flex items-center justify-center">
-          <button className="flex gap-3 bg-neutral-700 text-white rounded-full py-2 px-4"> <WhatsApp /> <Telegram /> | <YouTube /> </button>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 } 
