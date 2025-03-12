@@ -55,22 +55,32 @@ export class AuthController {
 
     login = (req: Request, res: Response) => {
         const { email, password } = req.body;
-
+    
         if (!email || !password) {
             throw new Error("Falta email o contraseña")
         }
-
+    
         this.authService.loginUser(email, password)
-            .then((token) => {
-                if (!token) {
-                    throw new Error("credenciales incorrectas")
+            .then((tokenAndUser) => {
+                if (!tokenAndUser) {
+                    throw new Error("Credenciales incorrectas");
                 }
-
+    
+                const { token, userLogin } = tokenAndUser;
+    
                 res.cookie("token", token, {
                     httpOnly: true,
                     secure: false,
                     maxAge: 3600000, // 1 hora
-                }).status(200).json({ message: "Autenticado" });
+                }).status(200).json({
+                    message: "Autenticado",
+                    user: {
+                        email: userLogin.email,
+                        name: userLogin.name,
+                        last_name: userLogin.last_name,
+                        phone:userLogin.phone
+                    }
+                });
             })
             .catch(err => {
                 res.status(500).json({ message: "Error en el login", error: err.message });

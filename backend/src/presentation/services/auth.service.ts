@@ -23,6 +23,7 @@ interface UserRegister {
     city_id: number;
 }
 interface UserLogin {
+    id_user:number;
     name: string;
     last_name: string;
     email: string;
@@ -75,7 +76,7 @@ export class AuthService {
         if (!isMatch) return null;
 
         const token = jwt.sign({ userLogin }, SECRET_KEY, { expiresIn: "1h" });
-        return token;
+        return {token, userLogin};
     }
 
     public verifyToken(token: string) {
@@ -86,8 +87,8 @@ export class AuthService {
         }
     }
     public filterUserData = (user: any): UserLogin => {
-        const { name, last_name, email, dni, address, phone, birth_date, city_id } = user.dataValues;
-        return { name, last_name, email, dni, address, phone, birth_date, city_id };
+        const {id_user, name, last_name, email, dni, address, phone, birth_date, city_id } = user.dataValues;
+        return {id_user, name, last_name, email, dni, address, phone, birth_date, city_id };
     };
 
     public async verifyRegister(token: string, user: any) {
