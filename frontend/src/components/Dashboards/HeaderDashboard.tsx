@@ -1,14 +1,16 @@
+import { useAuthStore } from "../../store/AuthStore";
 import AnualResume from "./AnualResume";
 
 
 const HeaderDashboard = () => {
 
+    const user = useAuthStore((state) => state.user);
 
     return (
         <div className="flex gap-12">
             <div className="w-1/3">
                 <div>
-                    <h4 className="font-semibold">Hola, Jose 👋</h4>
+                    <h4 className="font-semibold">Hola, {user?.name} 👋</h4>
                 </div>
 
                 <div className="font-semibold">

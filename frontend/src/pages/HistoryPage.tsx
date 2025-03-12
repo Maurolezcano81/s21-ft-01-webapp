@@ -1,36 +1,34 @@
-import React from 'react'; 
-import TransactionHistory from '../components/chart/TransactionHistory';  
-import AccountSummaryChart from '../components/chart/AccountSummaryCart';  
-import { Transaction } from '../types/Transaction.types';  
-import AsideBar from "../components/Aside/AsideBar";
-import NavbarLeft from "../components/Common/NavbarLeft"
+import React from 'react';
+import TransactionHistory from '../components/chart/TransactionHistory';
+import AccountSummaryChart from '../components/chart/AccountSummaryCart';
+import { Transaction } from '../types/Transaction.types';
+import NavbarLeft from '../components/Common/NavbarLeft';
+import AsideBar from '../components/Aside/AsideBar';
 
-const HistoryPage: React.FC = () => {  
-    const transactionsData: Transaction[] = [];  
+const HistoryPage: React.FC = () => {
+    const transactionsData: Transaction[] = [];
 
     return (  
         <div className="min-h-screen flex">  
-            {/*NavbarLeft a la izquierda */}  
-            <div className="flex">  
+            {/* Navbar a la izquierda */}  
+            <div className="w-[13rem] bg-white shadow-md">  
                 <NavbarLeft />  
             </div>  
 
-            {/* Charts */}  
-            <main className="p-6 flex flex-col gap-8 grow-2">  
-                <div className="flex">   
-                        <TransactionHistory transactions={transactionsData} />  
-                </div>  
-                    <div className="flex">   
-                        <AccountSummaryChart />  
-                    </div> 
-            </main>  
+            {/* Charts */}
+            <div className="p-4 mx-2 flex grow-2">
+                <div className="flex-1 p-2">
+                    <TransactionHistory transactions={transactionsData} />
+                </div>
+                <div className="w-[15rem] p-2">
+                    <AccountSummaryChart />
+                </div>
+            </div>
 
-            {/* AsideBar a la derecha */}  
-            <div className="flex">  
-                <AsideBar />  
-            </div>  
-        </div>  
-    );  
-};  
+            {/* Sidebar a la derecha */}
+            <AsideBar />
+        </div>
+    );
+};
 
 export default HistoryPage;  
