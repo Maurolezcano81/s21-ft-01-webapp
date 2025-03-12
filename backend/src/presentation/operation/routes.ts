@@ -3,6 +3,7 @@ import { OperationController } from "./controller";
 import { OperationService } from "../services/operation.service";
 import { TransactionService } from "../services/transaction.service";
 import { AccountService } from "../services/account.service";
+import sequelize from "../../data/db";
 
 export class OperationRoutes {
 
@@ -11,7 +12,7 @@ export class OperationRoutes {
         const router = Router();
 
         const accountService = new AccountService();
-        const transactionService = new TransactionService(accountService);
+        const transactionService = new TransactionService(accountService, sequelize);
         const service = new OperationService(transactionService, accountService);
 
         const controller = new OperationController(service);

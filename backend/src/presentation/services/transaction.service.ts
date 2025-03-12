@@ -1,7 +1,8 @@
-import { Op } from 'sequelize';
+import { Op, QueryTypes, Sequelize } from 'sequelize';
 import Account from '../../data/models/account.model';
 import Transaction from '../../data/models/transaction.model';
 import { AccountService } from './account.service';
+
 
 interface TransactionInfo {
     operation_id: number;
@@ -27,11 +28,15 @@ interface CreateTransaction {
 
 export class TransactionService {
 
-    constructor(private accountService: AccountService) { }
+    constructor(private accountService: AccountService, private sequelize: Sequelize) { }
 
     public async create(transaction: any) {
 
         try {
+
+            if (!transaction) {
+                throw new Error(`SIn transacción`);
+            }
             const newTransaction = await Transaction.create(transaction)
             await this.accountService.setAccountBalance(newTransaction.account_id, newTransaction.balance_after)
             return
@@ -63,6 +68,7 @@ export class TransactionService {
                 balance_after: transactionInfo.recieverBalanceBefore + transactionInfo.ammount,
                 account_id: transactionInfo.reciever_account_id
             }
+
 
             await this.create(sender);
             await this.create(reciever);
@@ -212,6 +218,38 @@ export class TransactionService {
         }
 
     }
+    public async getTransactionsSummary(accountId: Number) {
+        // 1️⃣ Obtener las transacciones mensuales agrupadas por mes e ingresos/egresos
+        const monthlyTransactions = await Transaction.findAll({
+            attributes: [
+                [Sequelize.fn("TO_CHAR", Sequelize.col("date"), "YYYY-MM"), "year_month"],
+                "is_income",
+                [Sequelize.fn("SUM", Sequelize.col("ammount")), "total_amount"]
+            ],
+            where: { account_id: accountId },
+            group: ["year_month", "is_income"],
+            order: [[Sequelize.fn("TO_CHAR", Sequelize.col("date"), "YYYY-MM"), "ASC"]],
+            raw: true
+        });
+    
+        // 2️⃣ Obtener los totales de ingresos y egresos
+        const totalAmounts = await Transaction.findOne({
+            attributes: [
+                [Sequelize.fn("SUM", Sequelize.literal("CASE WHEN is_income = true THEN ammount ELSE 0 END")), "total_income"],
+                [Sequelize.fn("SUM", Sequelize.literal("CASE WHEN is_income = false THEN ammount ELSE 0 END")), "total_expense"]
+            ],
+            where: { account_id: accountId },
+            raw: true
+        });
+        const balance=  await this.accountService.getAccountBalance(Number(accountId));
+    
+        return {
+            monthly: monthlyTransactions,
+            totals: totalAmounts,
+            balance
+        };
+    }
+    
 
 
 
