@@ -23,7 +23,7 @@ interface UserRegister {
     city_id: number;
 }
 interface UserLogin {
-    id_user:number;
+    user_id:number;
     name: string;
     last_name: string;
     email: string;
@@ -87,8 +87,8 @@ export class AuthService {
         }
     }
     public filterUserData = (user: any): UserLogin => {
-        const {id_user, name, last_name, email, dni, address, phone, birth_date, city_id } = user.dataValues;
-        return {id_user, name, last_name, email, dni, address, phone, birth_date, city_id };
+        const {user_id, name, last_name, email, dni, address, phone, birth_date, city_id } = user.dataValues;
+        return {user_id, name, last_name, email, dni, address, phone, birth_date, city_id };
     };
 
     public async verifyRegister(token: string, user: any) {

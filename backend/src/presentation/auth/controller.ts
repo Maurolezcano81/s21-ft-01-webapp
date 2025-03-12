@@ -75,6 +75,7 @@ export class AuthController {
                 }).status(200).json({
                     message: "Autenticado",
                     user: {
+                        id_user:userLogin.user_id,
                         email: userLogin.email,
                         name: userLogin.name,
                         last_name: userLogin.last_name,
