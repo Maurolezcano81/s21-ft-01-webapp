@@ -6,6 +6,7 @@ import HeaderDashboard from "../components/Dashboards/HeaderDashboard";
 
 export default function Dashboard() {
 
+
   return (
     <div className="flex">
       <NavbarLeft />
@@ -17,7 +18,9 @@ export default function Dashboard() {
           className="flex gap-2"
         >
           <div className="grow-2 min-w-1/2">
-            <TransactionHistory />
+            <TransactionHistory
+              limit={true}
+            />
           </div>
 
           <div className="grow-1">

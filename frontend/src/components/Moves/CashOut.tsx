@@ -5,6 +5,10 @@ import { InputText } from "primereact/inputtext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { moveOut, MoveOutForm } from "../../schemas/cashMove.schema";
+import { useTransfer } from "../../hooks/useMoves";
+import { useAuthStore } from "../../store/AuthStore";
+import { TransferCash } from "../../types/CashMoves.types";
+import BlueButton from "../buttons/BlueButton";
 
 
 const CashOut = () => {
@@ -15,9 +19,22 @@ const CashOut = () => {
         resolver: zodResolver(moveOut)
     })
 
+    const { mutate: transfer, isSuccess, isPending, error } = useTransfer();
+
+    const user = useAuthStore((state) => state.user);
 
     const onSubmit = (data: MoveOutForm) => {
-        console.log(data)
+
+        const complete_transaction: TransferCash = {
+            ...data,
+            ammount: Number(data.ammount),
+            operation_type_id: 1,
+            user_id: user!.id_user,
+            is_income: false,
+            sender_account_id: user!.account_id
+        }
+
+        transfer(complete_transaction)
     }
 
     return (
@@ -33,7 +50,7 @@ const CashOut = () => {
                         height={24}
                     />
                 </button>
-                
+
                 <p className="text-secondary text-center text-sm">
                     Enviar
                 </p>
@@ -43,15 +60,15 @@ const CashOut = () => {
                         <div className="flex flex-wrap flex-col items-center justify-between gap-2">
 
                             <div className="flex flex-col gap-4 grow-1">
-                                <label htmlFor="reciever_account_id">Numero de Cuenta</label>
+                                <label htmlFor="reciever_account_number">Numero de Cuenta</label>
                                 <InputText
                                     placeholder="Numero de Cuenta"
-                                    {...register("reciever_account_id")}
-                                    id="reciever_account_id"
-                                    invalid={!!errors.reciever_account_id}
+                                    {...register("reciever_account_number")}
+                                    id="reciever_account_number"
+                                    invalid={!!errors.reciever_account_number}
                                 />
-                                {errors && errors.reciever_account_id && (
-                                    <small className="text-secondary">{errors.reciever_account_id.message}</small>
+                                {errors && errors.reciever_account_number && (
+                                    <small className="text-secondary">{errors.reciever_account_number.message}</small>
                                 )}
                             </div>
 
@@ -59,15 +76,30 @@ const CashOut = () => {
                                 <label htmlFor="last_name">Monto</label>
                                 <InputText
                                     placeholder="Monto"
-                                    {...register("amount")}
-                                    id="amount"
-                                    invalid={!!errors.amount}
+                                    {...register("ammount")}
+                                    id="ammount"
+                                    invalid={!!errors.ammount}
                                 />
 
-                                {errors && errors.amount && (
-                                    <small className="text-secondary">{errors.amount.message}</small>
+                                {errors && errors.ammount && (
+                                    <small className="text-secondary">{errors.ammount.message}</small>
                                 )}
                             </div>
+
+                            <BlueButton
+                                label="Enviar"
+                                type="submit"
+                                disabled={isPending}
+                            />
+
+                            {isSuccess && (
+                                <p>Transferencia finalizada exitosamente</p>
+                            )}
+
+                            {error && (
+                                <p>Error al realizar la transferencia, compruebe los datos de cuente y el</p>
+                            )}
+
                         </div>
                     </form>
                 </Dialog>

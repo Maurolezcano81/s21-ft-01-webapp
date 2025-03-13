@@ -8,7 +8,7 @@ const HeaderDashboard = () => {
 
     const user = useAuthStore((state) => state.user);
     console.log(user)
-    const dashboardData = useDashboard(user?.id_user)
+    const dashboardData = useDashboard(user?.account_id)
 
     console.log(dashboardData)
     return (
