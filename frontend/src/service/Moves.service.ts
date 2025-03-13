@@ -20,12 +20,14 @@ export const transfer = async (data: TransferCash): Promise<TransferCashResponse
 
 export const fetchTransactions = async (userId: number, month: Date) => {
     try {
-        const formattedMonth = `${month.getFullYear()}-${(month.getMonth() + 1).toString().padStart(2, '0')}`;
+
+        const monthDatted = new Date(month)
+        const formattedMonth = `${monthDatted.getFullYear()}-${(monthDatted.getMonth() + 1).toString().padStart(2, '0')}`;
 
         console.log(formattedMonth);
 
         const response = await fetch(`${url_api}/${urlEndpoints.getTransactions}/${userId}`, {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },

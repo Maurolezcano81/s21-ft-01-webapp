@@ -8,6 +8,7 @@ import SettingsSVG from "../svg/SettingsSVG";
 import { useEffect, useState } from "react";
 import NavbarLeftItem from "./NavbarLeftItem";
 import HelpSVG from "../svg/HelpSVG";
+import Logout from "../svg/Logout";
 
 
 const NavbarLeft = () => {
@@ -105,6 +106,23 @@ const NavbarLeft = () => {
                     >
                         {
                             <HelpSVG
+                                viewBox="0 0 24 24"
+                                height={24}
+                                width={24}
+                            />
+                        }
+                    </NavbarLeftItem>
+                </div>
+
+                <div
+                    className="mt-12 gap-4 flex flex-col items-center w-[80%] text-white font-light">
+                    <NavbarLeftItem
+                        to="login"
+                        title="Cerrar Sesión"
+                        isActive={urlActive === 'login'}
+                    >
+                        {
+                            <Logout
                                 viewBox="0 0 24 24"
                                 height={24}
                                 width={24}

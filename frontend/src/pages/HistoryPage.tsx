@@ -8,10 +8,8 @@ const HistoryPage: React.FC = () => {
 
     return (  
         <div className="min-h-screen flex">  
-            {/* Navbar a la izquierda */}  
                 <NavbarLeft />  
 
-            {/* Charts */}
             <div className="p-4 mx-2 flex grow-2">
                 <div className="flex-1 p-2">
                     <TransactionHistory 
@@ -23,7 +21,6 @@ const HistoryPage: React.FC = () => {
                 </div>
             </div>
 
-            {/* Sidebar a la derecha */}
             <AsideBar />
         </div>
     );
