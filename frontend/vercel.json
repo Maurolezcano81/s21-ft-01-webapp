@@ -3,8 +3,16 @@
       {
         "source": "/:match*",
         "destination": "/index.html",
-        "permanent": false
+        "permanent": false,
+        "has": [
+          {
+            "type": "header",
+            "key": "accept",
+            "value": "text/html"
+          }
+        ]
       }
-    ]
+    ],
+    "cleanUrls": true
   }
   
