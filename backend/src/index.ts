@@ -1,17 +1,31 @@
-import express, { Request, Response } from "express";
+import { envs } from "./config/envs";
+import sequelize from "./data/db";
+import { AppRoutes } from "./presentation/routes";
+import { Server } from "./presentation/server";
 
-const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware para parsear JSON
-app.use(express.json());
+(async () => {
+  main();
+})()
 
-// Ruta de prueba
-app.get("/", (req: Request, res: Response) => {
-  res.send("¡Servidor con Express y TypeScript funcionando! 🚀");
-});
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+async function main() {
+
+  //DB connection here
+
+  try {
+    // Conectar a la base de datos
+    await sequelize.sync({alter: true});
+    console.log('Conexión exitosa a la base de datos con Sequelize');
+    // Iniciar el servidor
+    const server = new Server({
+      port: envs.PORT,
+      routes: AppRoutes.routes,
+    });
+
+    server.start();
+  } catch (err) {
+    console.error('Error al conectar con Sequelize:', err);
+  }
+
+}
