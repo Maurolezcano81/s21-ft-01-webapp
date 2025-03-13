@@ -14,7 +14,8 @@ export class OperationController {
             operation_type_id,
             ammount,
             sender_account_id,
-            reciever_account_id,
+            //reciever_account_id,
+            reciever_account_number,
             is_income } = req.body
 
         const operation = {
@@ -22,7 +23,8 @@ export class OperationController {
             operation_type_id,
             ammount,
             sender_account_id,
-            reciever_account_id,
+            reciever_account_number,
+            //reciever_account_id,
             is_income
         }
 
