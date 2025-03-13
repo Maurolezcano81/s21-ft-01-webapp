@@ -23,7 +23,7 @@ const Register: React.FC = () => {
     const { mutate: registerFunction, isSuccess, isPending, isError, error } = useRegister()
 
     const onSubmit = (data: FormDataRegister) => {
-        registerFunction(data)
+        registerFunction({ email: data.email ?? "", password: data.password ?? "", ...data });
         setModalOpen(true);
         console.log(data);
     }

@@ -27,12 +27,13 @@ const CashOut = () => {
 
         const complete_transaction: TransferCash = {
             ...data,
-            ammount: Number(data.ammount),
+            ammount: 100,
             operation_type_id: 1,
-            user_id: user!.id_user,
+            user_id: 123,
             is_income: false,
-            sender_account_id: user!.account_id
-        }
+            sender_account_id: user?.account_id ?? 0,
+            reciever_account_number: user?.account_number ?? "", // Agregar valor por defecto
+        };
 
         transfer(complete_transaction)
     }

@@ -40,10 +40,10 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ limit = false }
             ) : (
                 (limit && firstDate ? [[firstDate, transactions![firstDate]]] : Object.entries(transactions || {}))
                     .map(([date, trans]) => (
-                        <div key={date} className="mb-4">
+                        <div key={String(date)} className="mb-4">
                             <h3 className="text-lg text-secondary font-bold">{date}</h3>
                             <ul className="bg-white shadow-md rounded-lg p-3">
-                                {trans.slice(0, limit ? 5 : trans.length).map((t) => (
+                                {Array.isArray(trans) ? trans.slice(0, limit ? 5 : trans.length).map((t) => (
                                     <li key={t.transaction_id} className={`my-2 p-4 rounded-md last:border-none flex justify-between items-center ${t.is_income ? 'text-primary' : 'text-secondary shadow-md'}`}>
                                         <div className="flex flex-col items-start grow-1">
                                             <div className="font-semibold">Número de Transacción: {t.transaction_id}</div>
@@ -55,7 +55,7 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ limit = false }
                                             <span>${t.ammount}</span>
                                         </div>
                                     </li>
-                                ))}
+                                )) : null}
                             </ul>
                         </div>
                     ))

@@ -8,7 +8,7 @@ const HeaderDashboard = () => {
 
     const user = useAuthStore((state) => state.user);
     console.log(user)
-    const dashboardData = useDashboard(user?.account_id)
+    const dashboardData = useDashboard(user?.account_id ?? 0);
 
     console.log(dashboardData)
     return (
@@ -24,7 +24,7 @@ const HeaderDashboard = () => {
 
                         <div className="p-4 pr-18 rounded-xl border-1 border-secondary bg-whiteGray">
                             <p className="font-normal">Balance Total</p>
-                            <h4 className="my-2 font-bold text-4xl text-black">${dashboardData.data?.balance}</h4>
+                            <h4 className="my-2 font-bold text-4xl text-black">${String(dashboardData.data?.balance)}</h4>
                         </div>
 
                         <div className="p-4 pr-18 rounded-xl border-1 border-secondary bg-whiteGray">

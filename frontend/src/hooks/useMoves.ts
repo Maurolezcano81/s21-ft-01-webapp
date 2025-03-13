@@ -30,7 +30,7 @@ export const useTransactions = (userId: number, month: string) => {
     const getTransactions = async () => {
       try {
         setLoading(true);
-        const data = await fetchTransactions(userId, month);
+        const data = await fetchTransactions(userId, new Date(month));
         setTransactions(data);
       } catch (err) {
         setError("No se pudieron cargar las transacciones.");

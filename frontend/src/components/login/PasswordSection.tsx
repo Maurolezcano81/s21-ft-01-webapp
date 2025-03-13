@@ -1,15 +1,15 @@
-import { Password } from "primereact/password";
-import { useFormContext, Controller } from "react-hook-form";
+// import { Password } from "primereact/password";
+// import { useFormContext, Controller } from "react-hook-form";
 
-const PasswordSection = () => {
-    const {
-        control,
-        formState: { errors },
-    } = useFormContext(); 
+// const PasswordSection = () => {
+//     const {
+//         control,
+//         formState: { errors },
+//     } = useFormContext(); 
 
-    return (
+//     return (
        
-    );
-};
+//     );
+// };
 
-export default PasswordSection;
+// export default PasswordSection;

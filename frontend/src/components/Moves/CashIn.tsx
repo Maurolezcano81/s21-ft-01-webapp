@@ -27,8 +27,8 @@ const CashIn = () => {
             <Dialog header="Mis datos de cuenta" visible={cashInVisible} style={{ width: 'fit-content' }} onHide={() => { if (!cashInVisible) return; setCashInVisible(false); }} >
                 <div className="flex gap-2">
                     <h4 className="font-bold">Numero de cuenta: </h4>
-                    <p>{user?.account_number}</p>
-                </div>
+                    <p>{user?.account_number ?? "N/A"}</p>
+                    </div>
             </Dialog>
         </div>
     )

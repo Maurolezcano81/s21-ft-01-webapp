@@ -1,6 +1,4 @@
 
-
-import * as React from "react"
 import { SVGProps } from "react"
 const ChartPieSVG = (props: SVGProps<SVGSVGElement>) => (
     <svg

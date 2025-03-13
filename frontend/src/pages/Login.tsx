@@ -24,7 +24,7 @@ const Login: React.FC = () => {
     const { mutate: login, isPending, error } = useLogin();
 
     const onSubmit = (data: FormDataLogin) => {
-        login(data);
+        login({ email: data.email ?? "", password: data.password ?? "" });
     };
 
     return (

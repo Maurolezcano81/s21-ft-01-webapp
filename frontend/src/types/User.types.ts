@@ -1,16 +1,18 @@
 export interface User {
     id_user: number
-    name: string,
-    last_name: string,
+    name?: string,
+    last_name?: string,
     email: string,
-    birth_date: Date,
+    birth_date?: Date,
     phone: string,
     country_id: number,
     city_id: number,
     dni: string,
     dni_photo?: File | null,
     password: string,
-    repeatPwd?: string
+    repeatPwd?: string,
+    account_id?: number,
+    account_number?: string
 }
 
 export interface LoginResponse {
@@ -24,7 +26,7 @@ export interface LoginResponse {
     };
 }
 
-export type RegisterUser = Omit<User, 'id_user'>
+export type RegisterUser = Partial<User>
 
 export type LoginCredentials = Pick<User, 'email' | 'password'>
-export type UserLogged = Pick<User, 'id_user' | 'name'>
+export type UserLogged = Pick<User, 'id_user' | 'name' | 'account_id' | 'account_number'>
