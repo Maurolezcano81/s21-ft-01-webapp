@@ -26,10 +26,13 @@ const Register: React.FC = () => {
     const onSubmit = (data: FormDataRegister) => {
         registerFunction({ email: data.email ?? "", password: data.password ?? "", ...data });
 
-        setTimeout( () => {
-            navigation('/login')
-        }, 1500)
-        console.log(data);
+        
+        if(isError === false && error === null || undefined) {
+            setTimeout( () => {
+                navigation('/login')
+            }, 1500)
+            console.log(data);
+        }
     }
 
     return (
