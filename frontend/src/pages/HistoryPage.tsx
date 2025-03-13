@@ -11,9 +11,7 @@ const HistoryPage: React.FC = () => {
     return (  
         <div className="min-h-screen flex">  
             {/* Navbar a la izquierda */}  
-            <div className="w-[13rem] bg-white shadow-md">  
                 <NavbarLeft />  
-            </div>  
 
             {/* Charts */}
             <div className="p-4 mx-2 flex grow-2">

@@ -3,6 +3,7 @@ import NavbarLeft from "../components/Common/NavbarLeft"
 import HeaderDashboard from "../components/Dashboards/HeaderDashboard";
 
 export default function Dashboard() {
+
   return (
     <div className="flex">
       <NavbarLeft />

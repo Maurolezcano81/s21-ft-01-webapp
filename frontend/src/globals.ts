@@ -6,6 +6,7 @@ export const urlEndpoints = {
     getAllCountries: 'country',
     getCitiesByCountry: 'city/country',
     register: 'auth/register',
-    login: 'auth/login'
+    login: 'auth/login',
+    dashboardData: 'transaction/transactions' // Id de usuario al final
 }
 
