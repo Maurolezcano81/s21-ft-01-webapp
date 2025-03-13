@@ -11,11 +11,9 @@ import NacionalitySection from "../components/register/NacionalitySection";
 import PrivateDataSection from "../components/register/PrivateDataSection";
 import FooterForm from "../components/register/FooterForm";
 import { useRegister } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState(false);
-    const navigation = useNavigate();
     const { register, handleSubmit, control, trigger, setValue, formState: { errors } } = useForm<FormDataRegister>({
         resolver: zodResolver(registerSchema),
         mode: "all"
