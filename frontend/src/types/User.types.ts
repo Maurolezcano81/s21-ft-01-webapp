@@ -1,5 +1,5 @@
 export interface User {
-    id: number
+    id_user: number
     name: string,
     last_name: string,
     email: string,
@@ -16,12 +16,15 @@ export interface User {
 export interface LoginResponse {
     message: string;
     user: {
-        id: number;
+        id_user: number;
         name: string;
+        last_name: string;
+        email: string;
+        phone: string
     };
 }
 
-export type RegisterUser = Omit<User, 'id'>
+export type RegisterUser = Omit<User, 'id_user'>
 
 export type LoginCredentials = Pick<User, 'email' | 'password'>
-export type UserLogged = Pick<User, 'id' | 'name'>
+export type UserLogged = Pick<User, 'id_user' | 'name'>

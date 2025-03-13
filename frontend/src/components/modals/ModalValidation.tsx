@@ -69,9 +69,9 @@ const [errorMessage, setErrorMessage] = useState('');
             }, 600);   
             
             setTimeout(() => {  
-                navigate('/dashboard');   
+                navigate('/login');   
                 onClose();   
-            }, 5000);  
+            }, 4000);  
         }  
     };  
 

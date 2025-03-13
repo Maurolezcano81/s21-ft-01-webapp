@@ -17,11 +17,6 @@
   --font-monserrat: "Montserrat", "Poppins",
 }
 
-.p-inputtext	{
-  border-color: var(--color-secondary);
-}
-
-
 
 .custom-calendar.p-calendar-w-btn > button	{
   border: none;
