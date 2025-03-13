@@ -12,39 +12,32 @@ const AnualResume: React.FC<AnualResumeProps> = ({ dataGraphics }) => {
     const [chartData, setChartData] = useState<ChartData<"bar"> | null>(null);
     const [chartOptions, setChartOptions] = useState<ChartOptions<"bar"> | null>(null);
 
-    // Año estático de 2025 a 2030
     const staticYears = [2025, 2026, 2027, 2028, 2029, 2030];
 
-    // Nombres de los meses en español
     const monthNames = [
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
     ];
 
     useEffect(() => {
-        // Verificar que dataGraphics y monthly están definidos
         if (dataGraphics && dataGraphics.monthly) {
             const months = [];
             const ingresos = [];
             const egresos = [];
 
-            // Filtrar los datos por el año seleccionado
             const filteredData = dataGraphics.monthly.filter((item) => {
                 const year = parseInt(item.year_month.split("-")[0], 10);
                 return year === selectedYear;
             });
 
-            // Crear un objeto para almacenar los datos de ingresos y egresos
             const monthData: { [key: string]: { ingresos: number, egresos: number } } = {};
 
-            // Inicializar mesData con todos los meses (aunque sin datos) con valores 0
             monthNames.forEach((month) => {
                 monthData[month] = { ingresos: 0, egresos: 0 };
             });
 
-            // Llenar las listas de meses, ingresos y egresos
             filteredData.forEach((item) => {
-                const monthIndex = parseInt(item.year_month.split("-")[1], 10) - 1; // Indice del mes (0-11)
+                const monthIndex = parseInt(item.year_month.split("-")[1], 10) - 1; 
                 const monthName = monthNames[monthIndex];
 
                 if (item.is_income) {
@@ -54,7 +47,6 @@ const AnualResume: React.FC<AnualResumeProps> = ({ dataGraphics }) => {
                 }
             });
 
-            // Ahora llenar las listas de meses, ingresos y egresos
             Object.keys(monthData).forEach((month) => {
                 months.push(month);
                 ingresos.push(monthData[month].ingresos);
@@ -71,7 +63,7 @@ const AnualResume: React.FC<AnualResumeProps> = ({ dataGraphics }) => {
                         hoverBackgroundColor: "rgba(0, 149, 190, 0.6)",
                         borderRadius: 10,
                         borderSkipped: false,
-                        barThickness: 12, // Ajustar el grosor de las barras
+                        barThickness: 12, 
                     },
                     {
                         label: "Egresos",
