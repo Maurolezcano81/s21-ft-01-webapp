@@ -11,10 +11,11 @@ import NacionalitySection from "../components/register/NacionalitySection";
 import PrivateDataSection from "../components/register/PrivateDataSection";
 import FooterForm from "../components/register/FooterForm";
 import { useRegister } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState(false);
-
+    const navigation = useNavigate();
     const { register, handleSubmit, control, trigger, setValue, formState: { errors } } = useForm<FormDataRegister>({
         resolver: zodResolver(registerSchema),
         mode: "all"
@@ -23,13 +24,11 @@ const Register: React.FC = () => {
     const { mutate: registerFunction, isSuccess, isPending, isError, error } = useRegister()
     
     const onSubmit = (data: FormDataRegister) => {
-        // Ejecutar la función de registro
         registerFunction({ email: data.email ?? "", password: data.password ?? "", ...data });
 
-        // Si no hay errores en el formulario, abrir el modal
-        if (Object.keys(errors).length === 0 && !isError && !error) {
-            setModalOpen(true);
-        }
+        setTimeout( () => {
+            navigation('/login')
+        }, 1500)
         console.log(data);
     }
 
@@ -61,7 +60,7 @@ const Register: React.FC = () => {
                     {
                         isSuccess && (
                             <p>
-                                {`${isSuccess}`}
+                                {`Registro Exitoso 👍`}
                             </p>
                         )
                     }
