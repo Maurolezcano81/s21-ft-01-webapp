@@ -9,13 +9,16 @@ interface TransactionHistoryProps {
 }
 
 const TransactionHistory: React.FC<TransactionHistoryProps> = ({ limit = false }) => {
-    const user = useAuthStore((state) => state.user); 
-    const [selectedMonth, setSelectedMonth] = useState<Date | null>(new Date()); 
+    const user = useAuthStore((state) => state.user);
+    const [selectedMonth, setSelectedMonth] = useState<Date | null>(new Date());
 
     const { transactions, loading, error } = useTransactions(
         user!.id_user,
         selectedMonth ? selectedMonth.toISOString() : ""
     );
+
+    // Obtener la primera fecha si limit=true
+    const firstDate = limit ? Object.keys(transactions || {})[0] : null;
 
     return (
         <div className="p-4 bg-whiteSecondary">
@@ -31,29 +34,31 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ limit = false }
                 <MonthPickerDemo selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
             </div>
 
-            {!transactions || Object.keys(transactions).length === 0 ? (
+            {/* Verificación de transacciones y mensaje cuando no haya */}
+            {!loading && !error && (!transactions || Object.keys(transactions).length === 0) ? (
                 <div className="text-gray-500 text-center">No hay transacciones para este mes.</div>
             ) : (
-                Object.entries(transactions).map(([date, trans]) => (
-                    <div key={date} className="mb-4">
-                        <h3 className="text-lg text-secondary font-bold">{date}</h3>
-                        <ul className="bg-white shadow-md rounded-lg p-3">
-                            {trans.slice(0, limit ? 5 : trans.length).map((t) => (
-                                <li key={t.transaction_id} className={` my-2 p-4 rounded-md last:border-none flex justify-between items-center ${t.is_income ? 'text-primary' : 'text-secondary shadow-md'}`}>
-                                    <div className="flex flex-col items-start grow-1">
-                                        <div className="font-semibold ">Numero de Transacción: {t.transaction_id}</div>
-                                        <div className="text-xs">
-                                            {new Date(t.date).toLocaleString()}
+                (limit && firstDate ? [[firstDate, transactions![firstDate]]] : Object.entries(transactions || {}))
+                    .map(([date, trans]) => (
+                        <div key={date} className="mb-4">
+                            <h3 className="text-lg text-secondary font-bold">{date}</h3>
+                            <ul className="bg-white shadow-md rounded-lg p-3">
+                                {trans.slice(0, limit ? 5 : trans.length).map((t) => (
+                                    <li key={t.transaction_id} className={`my-2 p-4 rounded-md last:border-none flex justify-between items-center ${t.is_income ? 'text-primary' : 'text-secondary shadow-md'}`}>
+                                        <div className="flex flex-col items-start grow-1">
+                                            <div className="font-semibold">Número de Transacción: {t.transaction_id}</div>
+                                            <div className="text-xs">
+                                                {new Date(t.date).toLocaleString()}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="text-right grow-1">
-                                        <span className={``}>${t.ammount}</span>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))
+                                        <div className="text-right grow-1">
+                                            <span>${t.ammount}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
             )}
         </div>
     );

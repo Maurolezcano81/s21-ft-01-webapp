@@ -117,7 +117,7 @@ const NavbarLeft = () => {
                 <div
                     className="mt-12 gap-4 flex flex-col items-center w-[80%] text-white font-light">
                     <NavbarLeftItem
-                        to="login"
+                        to="/login"
                         title="Cerrar Sesión"
                         isActive={urlActive === 'login'}
                     >
