@@ -32,6 +32,9 @@ interface UserLogin {
     phone: string;
     birth_date: string;
     city_id: number;
+    account_id:number;
+    account_number:string;
+    balance:number
 }
 
 export class AuthService {
@@ -70,8 +73,9 @@ export class AuthService {
     public async loginUser(email: string, password: string) {
         const user = await this.userService.getByEmail(email);
         if (!user) throw new Error("User not found");
-
-        const userLogin = this.filterUserData(user);
+        const account =await this.accountService.getAccountByUserID(user.user_id);
+        if (!account) throw new Error("Account not found");
+        const userLogin = this.filterUserData(user, account);
         const isMatch = await bcryptAdapter.compare(password, user.password);
         if (!isMatch) return null;
 
@@ -86,9 +90,10 @@ export class AuthService {
             return null;
         }
     }
-    public filterUserData = (user: any): UserLogin => {
+    public filterUserData = (user: any, account: any): UserLogin => {
         const {user_id, name, last_name, email, dni, address, phone, birth_date, city_id } = user.dataValues;
-        return {user_id, name, last_name, email, dni, address, phone, birth_date, city_id };
+        const {account_id, account_number, balance} = account.dataValues;
+        return {user_id, name, last_name, email, dni, address, phone, birth_date, city_id, account_id, account_number, balance };
     };
 
     public async verifyRegister(token: string, user: any) {

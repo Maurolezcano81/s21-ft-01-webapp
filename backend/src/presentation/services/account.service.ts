@@ -66,6 +66,13 @@ export class AccountService {
     }
 
   }
+
+  public async getAccountByUserID(user_id: any) {
+    const res = await Account.findOne({ where: { user_id } })
+
+    if (!res) throw new Error(`No existe cuenta con el ID de usuario: ${user_id}`)
+    return res
+}
 }
 
 
