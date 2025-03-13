@@ -25,14 +25,6 @@ const Register: React.FC = () => {
     
     const onSubmit = (data: FormDataRegister) => {
         registerFunction({ email: data.email ?? "", password: data.password ?? "", ...data });
-
-        
-        if(isError === false && error === null || undefined) {
-            setTimeout( () => {
-                navigation('/login')
-            }, 1500)
-            console.log(data);
-        }
     }
 
     return (
@@ -63,7 +55,7 @@ const Register: React.FC = () => {
                     {
                         isSuccess && (
                             <p>
-                                {`Registro Exitoso 👍`}
+                                {`Registro Exitoso, ahora dirigite a iniciar sesión 👍`}
                             </p>
                         )
                     }
