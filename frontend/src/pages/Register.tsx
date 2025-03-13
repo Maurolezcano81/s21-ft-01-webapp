@@ -59,7 +59,7 @@ const Register: React.FC = () => {
                     }
 
                     {
-                        isError && error && (
+                        error && (
                             <p className="p-4 bg-red-200">
                                 {`${error.message}`}
                             </p>
