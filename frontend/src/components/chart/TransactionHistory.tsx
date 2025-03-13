@@ -67,7 +67,7 @@ const TransactionHistory: React.FC = () => {
                 label="Ver Transferencia"  
                 title="Ver detalles de la transferencia"  
                 className="w-full mt-1 px-1 py-1 bg-primary text-white rounded-lg font-monserrat hover:bg-primary-dark transition-colors text-xs"  
-                style={{ height: '1.25rem', fontSize: '0.6rem' }}  
+                style={{ fontSize: '0.6rem', padding: '5px' }}  
                 onClick={() => alert(`Ver transferencia ${rowData.id}`)}  
                 aria-label={`Ver detalles de la transferencia ${rowData.id}`}   
             />  
@@ -112,7 +112,7 @@ const TransactionHistory: React.FC = () => {
             display: 'inline-flex',  
             alignItems: 'center',  
             fontFamily: 'Montserrat, sans-serif',  
-            fontSize: '0.5rem',  
+            fontSize: '10px',  
         };  
 
         const circleStyle = {  
@@ -155,7 +155,7 @@ const TransactionHistory: React.FC = () => {
 
             {Object.entries(groupedTransactions).map(([date, transactions]) => (  
                 <div key={date} className="mb-1 border-b pb-1">   
-                    <DataTable value={transactions} responsiveLayout="scroll" className=""  
+                    <DataTable value={transactions} responsiveLayout="scroll"  
                         style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '0.5rem' }}  
                         tableStyle={{ borderCollapse: 'collapse' }}  
                         rowGroupMode="subheader"  
@@ -168,15 +168,15 @@ const TransactionHistory: React.FC = () => {
                     >  
                         <Column body={categoryIconBodyTemplate} style={{ width: '0.2rem'}} />  
                         <Column body={(rowData: Transaction) => (  
-                            <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '0.5rem', lineHeight: 'normal', width:'10rem' }}>  
+                            <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', lineHeight: 'normal', width:'10rem' }}>  
                                 <div style={{ fontWeight: 'bold' }}>{rowData.to}</div>  
                                 <div>{formatDateTime(rowData.date)}</div>  
                             </div>  
                         )} style={{ flexGrow: 1 }} />  
                         <Column field="category" body={categoryBodyTemplate} style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '0.75rem' }} headerStyle={{ color: '#FF6B6B', fontSize: '0.8rem' }} />  
                         <Column body={amountIconBodyTemplate} style={{ width: '0.5rem' }} />  
-                        <Column body={amountBodyTemplate} style={{ width:'0.5rem', fontFamily: 'Montserrat, sans-serif', fontSize: '0.5rem' }} />  
-                        <Column body={actionBodyTemplate} style={{ width: '2rem', fontFamily: 'Montserrat, sans-serif', fontSize: '0.5rem' }} />  
+                        <Column body={amountBodyTemplate} style={{ width:'0.5rem', fontFamily: 'Montserrat, sans-serif', fontSize: '14px' }} />  
+                        <Column body={actionBodyTemplate} style={{ width: '2rem', fontFamily: 'Montserrat, sans-serif', fontSize: '14px' }} />  
                     </DataTable>  
                 </div>  
             ))}  

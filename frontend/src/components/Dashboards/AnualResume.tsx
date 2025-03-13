@@ -69,7 +69,7 @@ const AnualResume: React.FC<AnualResumeProps> = ({ dataGraphics }) => {
                         data: ingresos,
                         backgroundColor: "rgba(0, 149, 190, 1)",
                         hoverBackgroundColor: "rgba(0, 149, 190, 0.6)",
-                        borderRadius: 20,
+                        borderRadius: 10,
                         borderSkipped: false,
                         barThickness: 12, // Ajustar el grosor de las barras
                     },
@@ -90,7 +90,7 @@ const AnualResume: React.FC<AnualResumeProps> = ({ dataGraphics }) => {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: true,
+                        display: false,
                         position: "top",
                     },
                 },

@@ -10,6 +10,7 @@ const HeaderDashboard = () => {
     console.log(user)
     const dashboardData = useDashboard(user?.id_user)
 
+    console.log(dashboardData)
     return (
         <div className="flex gap-12">
             <div className="w-1/3">

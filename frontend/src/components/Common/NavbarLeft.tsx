@@ -73,7 +73,7 @@ const NavbarLeft = () => {
     }, [location.pathname])
 
     return (
-        <div className="bg-secondary w-[30%] h-screen px-4 py-8 flex flex-col lg:w-[15%] items-center justify-between">
+        <div className="bg-secondary w-[30%] min-h-screen px-4 py-8 flex flex-col lg:w-[15%] items-center justify-between">
 
             <div className="w-full flex flex-col items-center">
                 <div>
@@ -94,26 +94,28 @@ const NavbarLeft = () => {
                     ))}
 
                 </nav>
+
+                <div
+                    className="mt-12 gap-4 flex flex-col items-center w-[80%] text-white font-light">
+
+                    <NavbarLeftItem
+                        to="about"
+                        title="Ayuda"
+                        isActive={urlActive === 'about'}
+                    >
+                        {
+                            <HelpSVG
+                                viewBox="0 0 24 24"
+                                height={24}
+                                width={24}
+                            />
+                        }
+                    </NavbarLeftItem>
+                </div>
             </div>
 
 
-            <div
-                className="mt-12 gap-4 flex flex-col items-center w-[80%] text-white font-light">
 
-                <NavbarLeftItem
-                    to="about"
-                    title="Ayuda"
-                    isActive={urlActive === 'about'}
-                >
-                    {
-                        <HelpSVG
-                            viewBox="0 0 24 24"
-                            height={24}
-                            width={24}
-                        />
-                    }
-                </NavbarLeftItem>
-            </div>
         </div>
     )
 }
