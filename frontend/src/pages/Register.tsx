@@ -21,10 +21,13 @@ const Register: React.FC = () => {
     })
 
     const { mutate: registerFunction, isSuccess, isPending, isError, error } = useRegister()
-
+    
     const onSubmit = (data: FormDataRegister) => {
+        // Ejecutar la función de registro
         registerFunction({ email: data.email ?? "", password: data.password ?? "", ...data });
-        if(!isError && !error){
+
+        // Si no hay errores en el formulario, abrir el modal
+        if (Object.keys(errors).length === 0 && !isError && !error) {
             setModalOpen(true);
         }
         console.log(data);
