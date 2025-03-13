@@ -1,20 +1,17 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "index.html",
-        "use": "@vercel/static"
-      },
-      {
-        "src": "public/**/*",
-        "use": "@vercel/static"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(?!.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|map|webp|txt))",
-        "dest": "/index.html"
-      }
-    ]
-  }
-  
+  "redirects": [
+    {
+      "source": "/:match*",
+      "destination": "/index.html",
+      "permanent": false,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "text/html"
+        }
+      ]
+    }
+  ],
+  "cleanUrls": true
+}
