@@ -1,17 +1,8 @@
 {
-  "redirects": [
-    {
-      "source": "/:match*",
-      "destination": "/index.html",
-      "permanent": false,
-      "has": [
+    "rewrites": [
         {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html"
+            "source": "/(.*)",
+            "destination": "/"
         }
-      ]
-    }
-  ],
-  "cleanUrls": true
+    ]
 }
