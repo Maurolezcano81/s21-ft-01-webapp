@@ -47,6 +47,20 @@ export class AccountService {
     }
 
   }
+  public async getAccountForNumberAccount(account_number: string) {
+
+    try {
+      const account = await Account.findOne({ where: { account_number} });
+
+      if (!account) throw new Error('Account not found')
+
+      return {reciever_balance:account.balance, reciever_account_id:account.account_id};
+
+    } catch (error) {
+      throw new Error(`Internal server error: ${error}`)
+    }
+
+  }
 
   public async setAccountBalance(account_id: number, balance: number) {
 
@@ -66,6 +80,13 @@ export class AccountService {
     }
 
   }
+
+  public async getAccountByUserID(user_id: any) {
+    const res = await Account.findOne({ where: { user_id } })
+
+    if (!res) throw new Error(`No existe cuenta con el ID de usuario: ${user_id}`)
+    return res
+}
 }
 
 

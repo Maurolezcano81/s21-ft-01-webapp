@@ -24,8 +24,10 @@ export class OperationService {
                     if (senderBalanceBefore < operation.ammount) throw new Error(`Balance is lower than operation ammount`);
 
                     operation.senderBalanceBefore = senderBalanceBefore
-                    operation.recieverBalanceBefore = await this.accountService.getAccountBalance(operation.reciever_account_id)
-
+                    //operation.recieverBalanceBefore = await this.accountService.getAccountBalance(operation.reciever_account_id)
+                    const {reciever_account_id, reciever_balance}= await this.accountService.getAccountForNumberAccount(operation.reciever_account_number)
+                    operation.recieverBalanceBefore=reciever_balance;
+                    operation.reciever_account_id=reciever_account_id;
             
                     const newOperation = await Operation.create(operation)
                     operation.operation_id = newOperation.operation_id;
